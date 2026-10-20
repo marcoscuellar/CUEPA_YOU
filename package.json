@@ -1,0 +1,6 @@
+{
+  "name": "cuepa-for-you",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=18" }
+}
