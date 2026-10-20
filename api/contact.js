@@ -66,14 +66,15 @@ export default async function handler(req, res) {
   // 2) The "Got it" email, to the person. If this fails we still report
   // success, because Marcos already has the booking.
   const first = (name.split(/\s+/)[0] || "there").slice(0, 60);
-  const c = confirmation(first, note);
+  const summary = String(body.summary || "").trim().slice(0, 2000);
+  const c = confirmation(first, note, summary);
   const r2 = await send(key, { from: FROM, to: [email], reply_to: TO, subject: c.subject, html: c.html, text: c.text });
   if (!r2.ok) console.error("Booking: confirmation email failed", r2.status, await r2.text().catch(() => ""));
 
   return res.status(200).json({ ok: true });
 }
 
-function confirmation(first, answers) {
+function confirmation(first, answers, summary) {
   const subject = `Got it, ${first}. Your CUEPA for You hour is almost set.`;
   const steps = [
     "Marcos will email you a payment link. Once it's paid, your hour is set.",
@@ -83,6 +84,7 @@ function confirmation(first, answers) {
   const text = [
     `Hi ${first},`, "",
     "Thanks for booking a session with CUEPA for You. We got your answers, and Marcos is looking them over.", "",
+    ...(summary ? ["Here's what we heard:", summary, ""] : []),
     "What happens next:", ...steps.map((s, i) => `${i + 1}. ${s}`), "",
     "What you told us:", answers, "",
     "Questions? Just reply to this email.", "",
@@ -93,6 +95,8 @@ function confirmation(first, answers) {
 <p style="margin:0 0 18px"><span style="display:inline-block;width:10px;height:22px;background:#141414;vertical-align:middle"></span><span style="display:inline-block;width:4px"></span><span style="display:inline-block;width:10px;height:22px;background:#F9C933;vertical-align:middle"></span> <strong style="vertical-align:middle;letter-spacing:.04em">CUEPA</strong> <span style="vertical-align:middle;color:#8a6500;font-size:13px;letter-spacing:.1em">FOR YOU</span></p>
 <h1 style="font-size:24px;line-height:1.2;margin:0 0 14px">Got it, ${esc(first)}. Talk soon.</h1>
 <p style="margin:0 0 18px">Thanks for booking a session with CUEPA for You. We got your answers, and Marcos is looking them over.</p>
+${summary ? `<p style="margin:0 0 8px;font-weight:600">Here's what we heard</p>
+<p style="margin:0 0 20px">${esc(summary)}</p>` : ""}
 <p style="margin:0 0 8px;font-weight:600">What happens next</p>
 <ol style="margin:0 0 20px;padding-left:20px">${steps.map((s) => `<li style="margin-bottom:6px">${esc(s)}</li>`).join("")}</ol>
 <p style="margin:0 0 8px;font-weight:600">What you told us</p>

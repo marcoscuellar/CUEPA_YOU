@@ -518,39 +518,19 @@ html{scroll-behavior:smooth}
   </div>
 </footer>
 
-<!-- BOOK A SESSION POP-UP -->
+<!-- BOOK A SESSION POP-UP: one question per screen -->
 <dialog id="contact" class="modal" aria-labelledby="mTitle">
   <button type="button" class="mClose" aria-label="Close">×</button>
   <div id="mForm">
-    <div class="mProg" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    <div class="mProg" aria-hidden="true"><i id="mBar"></i></div>
     <form id="cForm" novalidate>
-      <section class="mStep" data-step="1">
-        <p class="eyebrow mEy">Step 1 of 3 · You</p>
-        <h2 id="mTitle" class="anton">Let's make room for you<span style="color:#d9a400">.</span></h2>
-        <p class="mSub">First, who are we talking to?</p>
-        <label class="f">Your name<input id="fName" name="name" autocomplete="name" required maxlength="200"></label>
-        <label class="f">Email<input id="fEmail" name="email" type="email" autocomplete="email" required maxlength="320"></label>
-        <div class="hp" aria-hidden="true"><label>Company<input name="company" tabindex="-1" autocomplete="off"></label></div>
-        <p class="mErr" role="alert"></p>
-        <button class="btn btn-sun mNext" type="button">Next <span aria-hidden="true">›</span></button>
-      </section>
-      <section class="mStep" data-step="2" hidden>
-        <p class="eyebrow mEy">Step 2 of 3 · A few questions</p>
-        <h2 class="anton">Tell us about you<span style="color:#d9a400">.</span></h2>
-        <p class="mSub">About a minute. The more detail you give, the more we get done in your hour.</p>
-        <fieldset class="q"><legend>Where are you with AI right now?</legend><div class="opts"><label class="opt"><input type="radio" name="level" value="Never really used it"><span>Never really used it</span></label><label class="opt"><input type="radio" name="level" value="Tried a few things"><span>Tried a few things</span></label><label class="opt"><input type="radio" name="level" value="Use it sometimes"><span>Use it sometimes</span></label><label class="opt"><input type="radio" name="level" value="Use it a lot"><span>Use it a lot</span></label></div></fieldset>
-        <fieldset class="q"><legend>What do you use day to day? <span>(pick any)</span></legend><div class="opts"><label class="opt"><input type="checkbox" name="tools" value="Gmail / Google Calendar"><span>Gmail / Google Calendar</span></label><label class="opt"><input type="checkbox" name="tools" value="Outlook"><span>Outlook</span></label><label class="opt"><input type="checkbox" name="tools" value="iPhone"><span>iPhone</span></label><label class="opt"><input type="checkbox" name="tools" value="Android"><span>Android</span></label><label class="opt"><input type="checkbox" name="tools" value="ChatGPT or another AI app"><span>ChatGPT or another AI app</span></label><label class="opt"><input type="checkbox" name="tools" value="Other"><span>Other</span></label></div></fieldset>
-        <fieldset class="q"><legend>Where would you most like AI to make room? <span>(pick any)</span></legend><div class="opts"><label class="opt"><input type="checkbox" name="areas" value="My week and calendar"><span>My week and calendar</span></label><label class="opt"><input type="checkbox" name="areas" value="Email"><span>Email</span></label><label class="opt"><input type="checkbox" name="areas" value="Money"><span>Money</span></label><label class="opt"><input type="checkbox" name="areas" value="Family logistics"><span>Family logistics</span></label><label class="opt"><input type="checkbox" name="areas" value="Travel and trips"><span>Travel and trips</span></label><label class="opt"><input type="checkbox" name="areas" value="A side project or idea"><span>A side project or idea</span></label><label class="opt"><input type="checkbox" name="areas" value="Other"><span>Other</span></label></div></fieldset>
-        <label class="f">What feels like too much right now?<textarea id="fMuch" name="much" rows="3" maxlength="2000" placeholder="Be as specific as you can."></textarea></label>
-        <label class="f">What do you want to walk away with? <span>(optional)</span><textarea name="goal" rows="2" maxlength="2000"></textarea></label>
-        <p class="mErr" role="alert"></p>
-        <div class="mRow"><button class="mBack" type="button">‹ Back</button><button class="btn btn-sun mSend" type="submit">Continue <span aria-hidden="true">›</span></button></div>
-      </section>
+      <div class="hp" aria-hidden="true"><label>Company<input name="company" tabindex="-1" autocomplete="off"></label></div>
+      <div id="mQ"></div>
     </form>
   </div>
   <div id="mDone" hidden role="status">
-    <div class="mProg" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div>
-    <p class="eyebrow mEy">Step 3 of 3 · Lock in your hour</p>
+    <div class="mProg" aria-hidden="true"><i style="--p:100%"></i></div>
+    <p class="eyebrow mEy">Last step · Lock in your hour</p>
     <h2 class="anton">Got it. Talk soon<span style="color:#d9a400">.</span></h2>
     <p class="mSub" id="mDoneTxt">Thanks for the detail. Marcos will email your payment link to <strong id="mEmail"></strong>. Once it's paid, your hour is set.</p>
     <a class="btn btn-sun mPay" id="mPay" href="#" target="_blank" rel="noopener" hidden>Continue to payment <span aria-hidden="true">›</span></a>
@@ -569,7 +549,11 @@ html{scroll-behavior:smooth}
 .f input,.f textarea{display:block;width:100%;margin-top:7px;border:1.5px solid #dcd8cf;border-radius:12px;padding:14px;font:400 16px Inter,sans-serif;color:var(--ink);background:#fff;outline:none}
 .f textarea{resize:vertical;min-height:84px}
 .f input:focus,.f textarea:focus{border-color:var(--ink)}
-.mProg{display:flex;gap:6px;margin-bottom:22px;padding-right:48px}.mProg i{flex:1;height:4px;border-radius:4px;background:#ece9e2}.mProg i.on{background:var(--sun)}
+.mProg{height:4px;border-radius:4px;background:#ece9e2;overflow:hidden;margin:0 48px 22px 0}.mProg i{display:block;height:100%;width:var(--p,0%);background:var(--sun);border-radius:4px;transition:width .35s cubic-bezier(.22,1,.36,1)}
+.modal .mQh{font-size:34px;line-height:1.05}
+.mReact{min-height:26px;margin:0 0 14px;color:#8a6500;font:600 15px/1.5 Inter,sans-serif}
+.mSum{margin:0 0 24px;padding:18px 20px;background:var(--soft);border-radius:14px;font-size:16px;line-height:1.65}
+.mSum p{margin:0 0 10px}.mSum p:last-child{margin:0}
 .mEy{color:#8a6500!important}
 .q{border:0;padding:0;margin:0 0 18px}.q legend{font:600 14px Inter,sans-serif;margin-bottom:9px;padding:0}.q legend span{font-weight:400;color:var(--muted)}
 .opts{display:flex;flex-wrap:wrap;gap:8px}
@@ -633,53 +617,146 @@ if(MOTION_ON){try{runMotion();motionOk=true}catch(e){document.querySelectorAll("
 const io=(!motionOk&&"IntersectionObserver" in window)?new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("seen");io.unobserve(e.target)}})},{threshold:.12}):null;
 if(!motionOk)document.querySelectorAll("[data-reveal]").forEach(el=>io?io.observe(el):el.classList.add("seen"));
 
-/* Book a session pop-up. Posts to this site's own /api/contact (api/contact.js). */
+/* Book a session pop-up: one question per screen, a short reaction to each answer, then a
+   summary before sending. Posts to this site's own /api/contact (api/contact.js). */
 const CONTACT_ENDPOINT="/api/contact"; /* this site's own booking function: api/contact.js */
 /* Payment link: paste the real link here when it's ready. Empty = Marcos emails it. */
 const PAY_URL="";
 const dlg=document.getElementById("contact"),form=document.getElementById("cForm");
-const steps=[...form.querySelectorAll(".mStep")],bars=document.querySelectorAll("#mForm .mProg i");
-function show(n){steps.forEach(st=>st.hidden=st.dataset.step!=String(n));bars.forEach((b,i)=>b.classList.toggle("on",i<n));
-  steps.forEach(st=>{const e=st.querySelector(".mErr");if(e)e.textContent=""});dlg.scrollTop=0}
-function openContact(){document.getElementById("mForm").hidden=false;document.getElementById("mDone").hidden=true;show(1);
-  if(dlg.showModal){dlg.showModal()}else{dlg.setAttribute("open","")}
-  setTimeout(()=>document.getElementById("fName").focus(),30)}
-function closeContact(){dlg.close?dlg.close():dlg.removeAttribute("open")}
-document.querySelectorAll(".js-book").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();openContact()}));
-document.querySelectorAll(".mClose,.mClose2").forEach(b=>b.addEventListener("click",closeContact));
-dlg.addEventListener("click",e=>{if(e.target===dlg)closeContact()});
-if(location.hash==="#book")openContact();
+const qBox=document.getElementById("mQ"),bar=document.getElementById("mBar");
 const okEmail=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-form.querySelector(".mNext").addEventListener("click",()=>{
-  const er=steps[0].querySelector(".mErr"),name=document.getElementById("fName").value.trim(),email=document.getElementById("fEmail").value.trim();
-  if(!name){er.textContent="Please add your name.";return}
-  if(!okEmail(email)){er.textContent="Please add a valid email.";return}
-  show(2)});
-form.querySelector(".mBack").addEventListener("click",()=>show(1));
-form.addEventListener("keydown",e=>{if(e.key==="Enter"&&!steps[0].hidden&&e.target.tagName==="INPUT"){e.preventDefault();form.querySelector(".mNext").click()}});
-form.addEventListener("submit",async e=>{
-  e.preventDefault();if(steps[1].hidden){form.querySelector(".mNext").click();return}
-  const er=steps[1].querySelector(".mErr");er.textContent="";
-  const fd=new FormData(form),name=(fd.get("name")||"").trim(),email=(fd.get("email")||"").trim();
-  const level=fd.get("level")||"",tools=fd.getAll("tools"),areas=fd.getAll("areas"),much=(fd.get("much")||"").trim(),goal=(fd.get("goal")||"").trim();
-  if(!level){er.textContent="Pick where you are with AI right now.";return}
-  if(!areas.length){er.textContent="Pick at least one place you'd like AI to make room.";return}
-  if(much.length<10){er.textContent="Tell us a little about what feels like too much. A sentence is fine.";return}
-  const note=["Where they are with AI: "+level,"Uses day to day: "+(tools.join(", ")||"(none picked)"),"Make room in: "+areas.join(", "),"","What feels like too much:",much,"","Wants to walk away with:",goal||"(left blank)"].join("\n");
-  const btn=form.querySelector(".mSend");btn.disabled=true;btn.textContent="Sending…";
+const firstName=n=>(n.trim().split(/\s+/)[0]||"");
+const LEVELS=[
+  ["Never really used it","You've never really used AI.","Perfect. Starting fresh is a fine place to start."],
+  ["Tried a few things","You've tried a few things with AI.","Perfect. Most people start right there."],
+  ["Use it sometimes","You use AI sometimes.","Good. You have something to build on."],
+  ["Use it a lot","You use AI a lot.","Good. We'll skip the basics and go straight to what fits your life."]
+];
+const TOOLS=["Gmail / Google Calendar","Outlook","iPhone","Android","ChatGPT or another AI app","Other"];
+const AREAS=["My week and calendar","Email","Money","Family logistics","Travel and trips","A side project or idea","Other"];
+const list=a=>a.length<3?a.join(" and "):a.slice(0,-1).join(", ")+", and "+a[a.length-1];
+const Q=[
+  {k:"name",type:"text",label:()=>"What should we call you?",sub:"First name is fine.",auto:"name",max:200,
+    check:a=>a.name.trim()?"":"Please add your name.",
+    react:a=>a.name.trim()?"Nice to meet you, "+firstName(a.name)+".":""},
+  {k:"email",type:"email",label:a=>"Where can we reach you, "+firstName(a.name)+"?",sub:"We'll send your confirmation here.",auto:"email",max:320,
+    check:a=>okEmail(a.email.trim())?"":"Please add a valid email.",
+    react:a=>okEmail(a.email.trim())?"Got it. That's where your confirmation goes.":""},
+  {k:"level",type:"radio",label:()=>"Where are you with AI right now?",sub:"Pick the one that's closest.",opts:LEVELS.map(l=>l[0]),
+    check:a=>a.level?"":"Pick where you are with AI right now.",
+    react:a=>{const l=LEVELS.find(x=>x[0]===a.level);return l?l[2]:""}},
+  {k:"tools",type:"check",label:()=>"What do you use day to day?",sub:"Pick any that apply.",opts:TOOLS,
+    check:()=>"",
+    react:a=>a.tools.length?"Good to know. We'll work with what you already use.":""},
+  {k:"areas",type:"check",label:()=>"Where would you most like AI to make room?",sub:"Pick any that apply.",opts:AREAS,
+    check:a=>a.areas.length?"":"Pick at least one place you'd like AI to make room.",
+    react:a=>a.areas.length>1?"Got it. We'll start with what matters most to you.":a.areas.length?"Got it. That's a good place to aim your hour.":""},
+  {k:"much",type:"area",label:()=>"What feels like too much right now?",sub:"Be as specific as you can. A sentence is fine.",max:2000,
+    check:a=>a.much.trim().length>=10?"":"Tell us a little about what feels like too much. A sentence is fine.",
+    react:a=>a.much.trim().length>=10?"Thank you. That helps us a lot.":""},
+  {k:"goal",type:"area",label:()=>"What do you want to walk away with?",sub:"Optional. Skip it if you're not sure yet.",max:2000,optional:true,
+    check:()=>"",
+    react:a=>a.goal.trim().length>=5?"Good. That goes at the top of the list.":""}
+];
+let A={},cur=0;
+function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function setBar(f){bar.style.setProperty("--p",Math.round(f*100)+"%")}
+function resetAnswers(){A={name:"",email:"",level:"",tools:[],areas:[],much:"",goal:""};form.company.value=""}
+function render(i){
+  cur=i;qBox.replaceChildren();dlg.scrollTop=0;
+  if(i>=Q.length)return renderReview();
+  const q=Q[i];setBar((i+1)/(Q.length+1));
+  qBox.append(el("p","eyebrow mEy","Question "+(i+1)+" of "+Q.length));
+  const h=el("h2","anton mQh",q.label(A));h.id="mTitle";qBox.append(h);
+  qBox.append(el("p","mSub",q.sub));
+  const react=el("p","mReact");react.setAttribute("aria-live","polite");
+  const err=el("p","mErr");err.setAttribute("role","alert");
+  const upd=()=>{react.textContent=q.react(A);err.textContent=""};
+  let first=null;
+  if(q.type==="text"||q.type==="email"||q.type==="area"){
+    const wrap=el("div","f");
+    const inp=document.createElement(q.type==="area"?"textarea":"input");
+    if(q.type==="area"){inp.rows=3}else{inp.type=q.type==="email"?"email":"text";inp.autocomplete=q.auto}
+    inp.maxLength=q.max;inp.value=A[q.k];inp.setAttribute("aria-label",q.label(A));
+    inp.addEventListener("input",()=>{A[q.k]=inp.value;upd()});
+    inp.addEventListener("keydown",e=>{if(e.key==="Enter"&&q.type!=="area"){e.preventDefault();next()}});
+    wrap.append(inp);qBox.append(wrap);first=inp;
+  }else{
+    const opts=el("div","opts");opts.setAttribute("role",q.type==="radio"?"radiogroup":"group");opts.setAttribute("aria-labelledby","mTitle");
+    q.opts.forEach(o=>{
+      const lab=el("label","opt"),inp=document.createElement("input");
+      inp.type=q.type==="radio"?"radio":"checkbox";inp.name=q.k;inp.value=o;
+      inp.checked=q.type==="radio"?A[q.k]===o:A[q.k].includes(o);
+      inp.addEventListener("change",()=>{
+        if(q.type==="radio")A[q.k]=o;else A[q.k]=[...opts.querySelectorAll("input:checked")].map(x=>x.value);
+        upd()});
+      lab.append(inp,el("span",null,o));opts.append(lab);
+    });
+    qBox.append(opts);
+  }
+  qBox.append(react,err);
+  upd();err.textContent="";
+  const row=el("div","mRow");
+  if(i>0){const b=el("button","mBack","‹ Back");b.type="button";b.addEventListener("click",()=>render(i-1));row.append(b)}
+  const n=el("button","btn btn-sun mNext",i===Q.length-1?"Review ":"Next ");
+  n.type="button";n.append(el("span",null,"›"));n.lastChild.setAttribute("aria-hidden","true");
+  n.addEventListener("click",()=>next());row.append(n);qBox.append(row);
+  if(first)setTimeout(()=>first.focus(),30);
+  function next(){const m=q.check(A);if(m){err.textContent=m;return}render(i+1)}
+}
+function summaryParts(){
+  const lv=LEVELS.find(x=>x[0]===A.level);
+  const parts=[];
+  if(lv)parts.push(lv[1]);
+  if(A.tools.length)parts.push("You use "+list(A.tools)+" day to day.");
+  if(A.areas.length)parts.push("You'd most like AI to make room in "+list(A.areas.map(s=>s.toLowerCase()))+".");
+  return parts;
+}
+function renderReview(){
+  setBar(1);
+  qBox.append(el("p","eyebrow mEy","One last look"));
+  const h=el("h2","anton mQh","Here's what we heard");h.id="mTitle";qBox.append(h);
+  qBox.append(el("p","mSub",firstName(A.name)+", if this sounds right, send it. If not, go back and change it."));
+  const box=el("div","mSum");
+  summaryParts().forEach(t=>box.append(el("p",null,t)));
+  box.append(el("p",null,"What feels like too much: "+A.much.trim()));
+  if(A.goal.trim())box.append(el("p",null,"What you want to walk away with: "+A.goal.trim()));
+  qBox.append(box);
+  const err=el("p","mErr");err.setAttribute("role","alert");qBox.append(err);
+  const row=el("div","mRow");
+  const b=el("button","mBack","‹ Back");b.type="button";b.addEventListener("click",()=>render(Q.length-1));
+  const s=el("button","btn btn-sun mSend","Send it ");s.type="button";s.append(el("span",null,"›"));s.lastChild.setAttribute("aria-hidden","true");
+  s.addEventListener("click",()=>send(s,err));
+  row.append(b,s);qBox.append(row);
+}
+async function send(btn,er){
+  er.textContent="";
+  const summary=summaryParts().join(" ");
+  const note=[summary,"","What feels like too much:",A.much.trim(),"","Wants to walk away with:",A.goal.trim()||"(left blank)"].join("\n");
+  const name=A.name.trim(),email=A.email.trim();
+  btn.disabled=true;btn.textContent="Sending…";
   try{
     const res=await fetch(CONTACT_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({name,email,note,chips:areas,company:fd.get("company")||"",source:"you",subject:"CUEPA for You booking: "+name})});
+      body:JSON.stringify({name,email,note,summary,chips:A.areas,company:form.company.value||"",source:"you",subject:"CUEPA for You booking: "+name})});
     const data=await res.json().catch(()=>({}));
     if(!res.ok)throw new Error(data.error||"Something went wrong. Please try again.");
     document.getElementById("mEmail").textContent=email;
     const pay=document.getElementById("mPay");
     if(PAY_URL){pay.href=PAY_URL;pay.hidden=false;document.getElementById("mDoneTxt").textContent="Thanks for the detail. Last step: pay to lock in your hour. We'll email you right after to set the time."}
-    document.getElementById("mForm").hidden=true;document.getElementById("mDone").hidden=false;form.reset();
+    document.getElementById("mForm").hidden=true;document.getElementById("mDone").hidden=false;resetAnswers();
   }catch(x){
     er.textContent=(x&&x.message&&!/fetch|network|load/i.test(x.message))?x.message:"We couldn't send that just now. Please email marcoscuellar@elipangroup.com.";
-  }finally{btn.disabled=false;btn.innerHTML='Continue <span aria-hidden="true">›</span>'}
-});
+    btn.disabled=false;btn.innerHTML='Send it <span aria-hidden="true">›</span>';
+  }
+}
+function openContact(){document.getElementById("mForm").hidden=false;document.getElementById("mDone").hidden=true;resetAnswers();render(0);
+  if(dlg.showModal){dlg.showModal()}else{dlg.setAttribute("open","")}}
+function closeContact(){dlg.close?dlg.close():dlg.removeAttribute("open")}
+document.querySelectorAll(".js-book").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();openContact()}));
+document.querySelectorAll(".mClose,.mClose2").forEach(b=>b.addEventListener("click",closeContact));
+dlg.addEventListener("click",e=>{if(e.target===dlg)closeContact()});
+form.addEventListener("submit",e=>e.preventDefault());
+if(location.hash==="#book")openContact();
 
 (()=>{const b=document.getElementById("ddBtn"),p=document.getElementById("ddPanel");if(!b||!p)return;
 const set=o=>{p.hidden=!o;b.setAttribute("aria-expanded",o)};
