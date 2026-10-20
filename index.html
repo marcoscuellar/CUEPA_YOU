@@ -550,6 +550,7 @@ html{scroll-behavior:smooth}
 .f textarea{resize:vertical;min-height:84px}
 .f input:focus,.f textarea:focus{border-color:var(--ink)}
 .mProg{height:4px;border-radius:4px;background:#ece9e2;overflow:hidden;margin:0 48px 22px 0}.mProg i{display:block;height:100%;width:var(--p,0%);background:var(--sun);border-radius:4px;transition:width .35s cubic-bezier(.22,1,.36,1)}
+.mLead{margin:0 0 12px;font:500 18px/1.5 Inter,sans-serif;color:var(--ink)}
 .modal .mQh{font-size:34px;line-height:1.05}
 .mReact{min-height:26px;margin:0 0 14px;color:#8a6500;font:600 15px/1.5 Inter,sans-serif}
 .mSum{margin:0 0 24px;padding:18px 20px;background:var(--soft);border-radius:14px;font-size:16px;line-height:1.65}
@@ -636,22 +637,22 @@ const TOOLS=["Gmail / Google Calendar","Outlook","iPhone","Android","ChatGPT or 
 const AREAS=["My week and calendar","Email","Money","Family logistics","Travel and trips","A side project or idea","Other"];
 const list=a=>a.length<3?a.join(" and "):a.slice(0,-1).join(", ")+", and "+a[a.length-1];
 const Q=[
-  {k:"name",type:"text",label:()=>"What should we call you?",sub:"First name is fine.",auto:"name",max:200,
+  {k:"name",type:"text",lead:()=>"We're looking forward to working with you. Let's start off with, what should we call you?",label:()=>"Hi there.",aria:"What should we call you?",sub:"First name is fine.",auto:"name",max:200,
     check:a=>a.name.trim()?"":"Please add your name.",
     react:a=>a.name.trim()?"Nice to meet you, "+firstName(a.name)+".":""},
-  {k:"email",type:"email",label:a=>"Where can we reach you, "+firstName(a.name)+"?",sub:"We'll send your confirmation here.",auto:"email",max:320,
+  {k:"email",type:"email",lead:a=>"Thanks, "+firstName(a.name)+".",label:a=>"Where can we reach you, "+firstName(a.name)+"?",sub:"We'll send your confirmation here.",auto:"email",max:320,
     check:a=>okEmail(a.email.trim())?"":"Please add a valid email.",
     react:a=>okEmail(a.email.trim())?"Got it. That's where your confirmation goes.":""},
-  {k:"level",type:"radio",label:()=>"Where are you with AI right now?",sub:"Pick the one that's closest.",opts:LEVELS.map(l=>l[0]),
+  {k:"level",type:"radio",lead:()=>"Now, a little about where you are starting from.",label:()=>"Where are you with AI right now?",sub:"Pick the one that's closest.",opts:LEVELS.map(l=>l[0]),
     check:a=>a.level?"":"Pick where you are with AI right now.",
     react:a=>{const l=LEVELS.find(x=>x[0]===a.level);return l?l[2]:""}},
   {k:"tools",type:"check",label:()=>"What do you use day to day?",sub:"Pick any that apply.",opts:TOOLS,
     check:()=>"",
     react:a=>a.tools.length?"Good to know. We'll work with what you already use.":""},
-  {k:"areas",type:"check",label:()=>"Where would you most like AI to make room?",sub:"Pick any that apply.",opts:AREAS,
+  {k:"areas",type:"check",lead:()=>"Almost there.",label:()=>"Where would you most like AI to make room?",sub:"Pick any that apply.",opts:AREAS,
     check:a=>a.areas.length?"":"Pick at least one place you'd like AI to make room.",
     react:a=>a.areas.length>1?"Got it. We'll start with what matters most to you.":a.areas.length?"Got it. That's a good place to aim your hour.":""},
-  {k:"much",type:"area",label:()=>"What feels like too much right now?",sub:"Be as specific as you can. A sentence is fine.",max:2000,
+  {k:"much",type:"area",lead:()=>"This one helps us the most.",label:()=>"What feels like too much right now?",sub:"Be as specific as you can. A sentence is fine.",max:2000,
     check:a=>a.much.trim().length>=10?"":"Tell us a little about what feels like too much. A sentence is fine.",
     react:a=>a.much.trim().length>=10?"Thank you. That helps us a lot.":""},
   {k:"goal",type:"area",label:()=>"What do you want to walk away with?",sub:"Optional. Skip it if you're not sure yet.",max:2000,optional:true,
@@ -667,7 +668,11 @@ function render(i){
   if(i>=Q.length)return renderReview();
   const q=Q[i];setBar((i+1)/(Q.length+1));
   qBox.append(el("p","eyebrow mEy","Question "+(i+1)+" of "+Q.length));
-  const h=el("h2","anton mQh",q.label(A));h.id="mTitle";qBox.append(h);
+  const h=el("h2","anton mQh",q.label(A));h.id="mTitle";
+  const lead=q.lead?el("p","mLead",q.lead(A)):null;
+  if(lead&&i>0)qBox.append(lead);
+  qBox.append(h);
+  if(lead&&i===0)qBox.append(lead);
   qBox.append(el("p","mSub",q.sub));
   const react=el("p","mReact");react.setAttribute("aria-live","polite");
   const err=el("p","mErr");err.setAttribute("role","alert");
@@ -677,7 +682,7 @@ function render(i){
     const wrap=el("div","f");
     const inp=document.createElement(q.type==="area"?"textarea":"input");
     if(q.type==="area"){inp.rows=3}else{inp.type=q.type==="email"?"email":"text";inp.autocomplete=q.auto}
-    inp.maxLength=q.max;inp.value=A[q.k];inp.setAttribute("aria-label",q.label(A));
+    inp.maxLength=q.max;inp.value=A[q.k];inp.setAttribute("aria-label",q.aria||q.label(A));
     inp.addEventListener("input",()=>{A[q.k]=inp.value;upd()});
     inp.addEventListener("keydown",e=>{if(e.key==="Enter"&&q.type!=="area"){e.preventDefault();next()}});
     wrap.append(inp);qBox.append(wrap);first=inp;
