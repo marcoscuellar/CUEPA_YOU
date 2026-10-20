@@ -626,7 +626,7 @@ const PAY_URL="";
 const dlg=document.getElementById("contact"),form=document.getElementById("cForm");
 const qBox=document.getElementById("mQ"),bar=document.getElementById("mBar");
 const okEmail=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-const firstName=n=>(n.trim().split(/\s+/)[0]||"");
+const firstName=n=>{const f=n.trim().split(/\s+/)[0]||"";return f.charAt(0).toUpperCase()+f.slice(1)};
 const LEVELS=[
   ["Never really used it","You've never really used AI.","Perfect. Starting fresh is a fine place to start."],
   ["Tried a few things","You've tried a few things with AI.","Perfect. Most people start right there."],
@@ -640,7 +640,7 @@ const Q=[
   {k:"name",type:"text",lead:()=>"We're looking forward to working with you. Let's start off with, what should we call you?",label:()=>"Hi there.",aria:"What should we call you?",sub:"First name is fine.",auto:"name",max:200,
     check:a=>a.name.trim()?"":"Please add your name.",
     react:a=>a.name.trim()?"Nice to meet you, "+firstName(a.name)+".":""},
-  {k:"email",type:"email",lead:a=>"Thanks, "+firstName(a.name)+".",label:a=>"Where can we reach you, "+firstName(a.name)+"?",sub:"We'll send your confirmation here.",auto:"email",max:320,
+  {k:"email",type:"email",lead:a=>"Thanks, "+firstName(a.name)+".",label:()=>"What's the best email to connect with you?",sub:"We'll send your confirmation there.",auto:"email",max:320,
     check:a=>okEmail(a.email.trim())?"":"Please add a valid email.",
     react:a=>okEmail(a.email.trim())?"Got it. That's where your confirmation goes.":""},
   {k:"level",type:"radio",lead:()=>"Now, a little about where you are starting from.",label:()=>"Where are you with AI right now?",sub:"Pick the one that's closest.",opts:LEVELS.map(l=>l[0]),
