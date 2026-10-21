@@ -126,8 +126,8 @@ One question per screen, with a short pre-written reaction to each answer ("Perf
    - `CONTACT_FROM` = `CUEPA <marcoscuellar@elipangroup.com>` (optional, this is the default)
    - `STRIPE_SECRET_KEY` = Stripe → Developers → API keys → Secret key (required for payment; never paste it in chats)
    - `STRIPE_PUBLISHABLE_KEY` = the Publishable key from the same page
-   - `STRIPE_PRICE_ID` = the `price_...` ID of a Stripe product "CUEPA for You, 1-hour session" (Product catalog → add product → one-time price)
-   - Test first with the **test-mode** keys and card 4242 4242 4242 4242, then switch all three to live keys.
+   - Price: **$129.00** is built in (`api/checkout.js`). Optional: `SESSION_PRICE_CENTS` (e.g. `12900`) to change it, or `STRIPE_PRICE_ID` to use a price from a Stripe product instead.
+   - Test first with the **test-mode** keys and card 4242 4242 4242 4242, then switch both to live keys.
 3. Redeploy after adding the variables.
 4. **Settings → Domains** → add **you.makingcuepa.com**. makingcuepa.com's DNS is already on Vercel (team `team_G7WBdov66WzlS910sSqwaJB9`), so it connects without DNS changes.
 
@@ -198,7 +198,7 @@ HANDOFF.md            this file
 ## 7. Open items
 
 1. Resend key with elipangroup.com sending, set in the new Vercel project.
-2. Payment: Stripe in-page checkout is built. Add the three `STRIPE_*` variables in Vercel, test with test keys, then switch to live.
+2. Payment: Stripe in-page checkout is built. Add `STRIPE_SECRET_KEY` and `STRIPE_PUBLISHABLE_KEY` in Vercel ($129.00 is built in), test with test keys, then switch to live.
 3. Approve or edit the booking questions; decide on the one-question-at-a-time version.
 4. Make sure the questionnaire promise on the page ("Tell us what's on your plate") matches what happens.
 5. Decide work.makingcuepa.com (see 4E).

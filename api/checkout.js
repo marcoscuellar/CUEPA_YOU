@@ -5,11 +5,30 @@
 // environment variables in Vercel (Production and Preview):
 //   STRIPE_SECRET_KEY       (required) sk_live_... or sk_test_... Never put it in code.
 //   STRIPE_PUBLISHABLE_KEY  (required) pk_live_... or pk_test_... Safe to show in the browser.
-//   STRIPE_PRICE_ID         (required) price_... for the "CUEPA for You 1-hour session" product.
-// If any is missing, the pop-up falls back to "Marcos will email your payment link."
+//   STRIPE_PRICE_ID         (optional) price_... of a Stripe product, if you'd rather manage the price in Stripe.
+//   SESSION_PRICE_CENTS     (optional) price when there's no STRIPE_PRICE_ID. Default 12900 ($129.00 USD).
+// If either key is missing, the pop-up falls back to "Marcos will email your payment link."
+// The price is never shown on the page itself; people see it in the checkout step.
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const SESSION_RE = /^cs_[A-Za-z0-9_]{10,200}$/;
+const DEFAULT_PRICE_CENTS = 12900; // $129.00
+
+function lineItem() {
+  if (process.env.STRIPE_PRICE_ID) return { price: process.env.STRIPE_PRICE_ID, quantity: 1 };
+  const cents = parseInt(process.env.SESSION_PRICE_CENTS, 10);
+  return {
+    quantity: 1,
+    price_data: {
+      currency: "usd",
+      unit_amount: Number.isFinite(cents) && cents >= 50 ? cents : DEFAULT_PRICE_CENTS,
+      product_data: {
+        name: "CUEPA for You, 1-hour session",
+        description: "One-on-one video session with Marcos and the CUEPA team",
+      },
+    },
+  };
+}
 
 // Stripe wants form encoding: {a:{b:[{c:1}]}} -> a[b][0][c]=1
 function form(obj, prefix = "", out = new URLSearchParams()) {
@@ -42,8 +61,8 @@ function origin(req) {
 }
 
 export default async function handler(req, res) {
-  const { STRIPE_SECRET_KEY, STRIPE_PUBLISHABLE_KEY, STRIPE_PRICE_ID } = process.env;
-  if (!STRIPE_SECRET_KEY || !STRIPE_PUBLISHABLE_KEY || !STRIPE_PRICE_ID) {
+  const { STRIPE_SECRET_KEY, STRIPE_PUBLISHABLE_KEY } = process.env;
+  if (!STRIPE_SECRET_KEY || !STRIPE_PUBLISHABLE_KEY) {
     console.error("Checkout: Stripe environment variables are not all set.");
     return res.status(503).json({ unavailable: true, error: "Payment isn't connected yet." });
   }
@@ -81,7 +100,7 @@ export default async function handler(req, res) {
 
   const params = {
     mode: "payment",
-    line_items: [{ price: STRIPE_PRICE_ID, quantity: 1 }],
+    line_items: [lineItem()],
     customer_email: email,
     submit_type: "book",
     // Stay in the pop-up when possible; only bank redirects come back to the page.
