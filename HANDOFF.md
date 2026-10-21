@@ -41,7 +41,7 @@ Follow the **CUEPA for You Brand Book** (link in section 8). Quick version: Sun 
 - Say "piling up" (overused).
 - Say "community" until there are real events.
 - Mention ŌLLIN anywhere on CUEPA for You (brand book rule).
-- Show a price on the site. Only the paid 1-hour session is offered publicly.
+- Show any price other than **$129** for the 1-hour session (approved Oct 20, 2026). Only the paid 1-hour session is offered publicly.
 - Put cards, text or overlays on people's faces or bodies in photos (hard rule).
 - Use guarantee language, hype words, or invented credentials or quotes.
 - Change anything Marcos didn't ask for, especially the logo and branding. Ask first.
@@ -67,7 +67,7 @@ Follow the **CUEPA for You Brand Book** (link in section 8). Quick version: Sun 
 | 4 | Bridge (#meet) | IT'S A LOT. WE'LL START WITH YOU. | Start where you are / Hand off the grunt work / Get back to your life. Closer: "You stay in the middle. AI makes the room." |
 | 5 | What you get (#changes) | ONE HOUR. YOUR AI, SET UP AROUND YOU. | We listen / We set it up / We build it together. "Where AI can make room" cards (week, inbox, money, ideas). Two "Making room for" photos. |
 | 6 | Dashboard (#dashboard) | THE HOUR ENDS. THE LEARNING DOESN'T. | Sample dashboard mock (labeled "Sample"). |
-| 7 | How it works (#how) | FROM "WHERE DO I START?" TO STARTED. | 3 steps: Book a session → Tell us what's on your plate (questionnaire) → Your hour, one-on-one. No payment step listed. |
+| 7 | How it works (#how) | FROM "WHERE DO I START?" TO STARTED. | 3 steps: Tell us what's on your plate → Pick the times that work for you (preferred dates, confirmed by email after payment) → Your hour, one-on-one. Price line next to the button. |
 | 8 | Start here | WHAT ARE YOU MAKING ROOM FOR? | Final call to action, coach photo. |
 | 9 | FAQ (#faq) | Fair questions. | 6 questions. Mirrored in the JSON-LD FAQPage. |
 
@@ -77,35 +77,33 @@ Top bar: transparent over the hero, smoky translucent glass after scrolling. "Me
 
 ## 3. Booking flow
 
-**Sign up → questions → paywall.** Nobody reaches payment without answering.
+**Price first → five questions → review → payment.** Nothing is confirmed until Stripe says it's paid. There is **no calendar connection**: people suggest dates, and Marcos confirms the session by email after payment.
 
-1. **Step 1 · You:** name, email (hidden honeypot field `company` catches bots).
-2. **Step 2 · A few questions:**
-   - Where are you with AI right now? (required, pick one)
-   - What do you use day to day? (pick any)
-   - Where would you most like AI to make room? (required, pick any)
-   - What feels like too much right now? (required)
-   - What do you want to walk away with? (optional)
-3. **Step 3 · Lock in your hour (in-page payment):** right after the answers send, Stripe's secure checkout appears inside the pop-up. When it's paid: "You're booked. Got it. Talk soon. Marcos will email you to pick your time together."
-   - Built by `api/checkout.js` (creates a Stripe Checkout Session, `ui_mode: embedded_page`, `redirect_on_completion: if_required`). No packages to install; it calls Stripe's API directly.
-   - If a bank asks for extra verification, Stripe sends the person back to `/?checkout=cs_...` and the pop-up reopens with the result.
-   - **Fallback:** if the Stripe variables aren't set (or Stripe can't load), the pop-up shows the old "Marcos will email the price and your payment link" screen. `PAY_URL` in `index.html` still works for that fallback.
-   - Stripe sends Marcos its own "payment received" email (check Stripe → Settings → Notifications). The booking answers still arrive by email first, even if someone doesn't finish paying.
+The price line sits next to the main "Book a session" buttons and at the top of the first question:
+"$129 · One-hour personal AI coaching · Your personalized dashboard included." The pop-up says payment is required to confirm the purchase.
 
-On submit the page POSTs JSON to **`/api/contact`** (this site's own function, `api/contact.js`):
+Progress shows **About you → Review → Payment**. The bar only reaches 100% after a confirmed payment.
 
-```json
-{ "name": "...", "email": "...", "note": "answers as text", "chips": ["Email"], "company": "", "source": "you", "subject": "CUEPA for You booking: <name>" }
-```
+1. **Where would you most like help?** (required, pick one; becomes the focus of the hour)
+2. **Where are you with AI right now?** (required; beginners see "We can start from the beginning, including setup.")
+3. **What do you use day to day?** (optional; any picks show "We'll work with what you already use.")
+4. **What's one task you'd love help with?** (optional, no minimum)
+5. **Where should we send your session details?** (name + email)
+6. **Review:** editable summary (Edit jumps back, then "Back to review"), what $129 includes, and **"Pick two or three dates that work for you"** (first two required) plus time zone (auto-filled) and an optional timing note. It says: "These are preferred times. Marcos will email you after payment to confirm your session."
+7. **Continue to payment — $129** → Stripe's checkout inside the pop-up.
+8. **Payment received.** Only after `api/confirm.js` checks with Stripe. If the bank is still processing, it says "Payment processing" instead. It never says "booked" or "confirmed", because the time isn't confirmed yet.
 
-`api/contact.js` then sends two emails through Resend:
-- **To Marcos:** "CUEPA for You booking: [name]" with all answers. Reply goes straight to the person.
-- **To the person:** "Got it, [first name]. Your CUEPA for You hour is almost set." with next steps and their answers.
+Answers are kept in the browser (sessionStorage) while someone books, so Back, closing the pop-up, a failed payment or a bank redirect don't lose them. They're cleared after a confirmed payment.
 
-### Idea in progress (not built)
-One question per screen, with a short pre-written reaction to each answer ("Perfect. Most people start right there."), and a personal summary on the last screen and in the "Got it" email. Waiting on Marcos's "build it."
+### Behind the scenes
+- `api/checkout.js` — creates the Stripe Checkout Session (`ui_mode: embedded_page`, $129) with the answers and preferred dates in its metadata. Uses an idempotency key per set of answers, so double clicks don't make two sessions. Sends no emails.
+- `api/confirm.js` — asks Stripe if the session is `complete` and `paid`. Only then emails Marcos ("PAID · CUEPA for You booking: name", with all answers and dates) and the person ("Payment received", says the dates are preferences). Emails go out once per payment (marked `cfy_emailed=1` on the PaymentIntent).
+- `lib/stripe.js`, `lib/email.js` — shared helpers (not routes).
+- `api/contact.js` — the old pre-payment booking email. The page no longer calls it; safe to delete later.
+- If Stripe keys are missing, the pop-up says payment isn't available and keeps the answers. There is no fake or fallback checkout.
 
----
+### If a calendar is added later
+Let people pick a real slot only when it can be held until Stripe confirms payment, and released if it isn't paid. Until then, keep the preferred-dates wording.
 
 ## 4. Going live (step by step)
 
@@ -132,8 +130,9 @@ One question per screen, with a short pre-written reaction to each answer ("Perf
 4. **Settings → Domains** → add **you.makingcuepa.com**. makingcuepa.com's DNS is already on Vercel (team `team_G7WBdov66WzlS910sSqwaJB9`), so it connects without DNS changes.
 
 ### D. Test
-1. Open you.makingcuepa.com → Book a session → fill all 3 steps with your own email.
-2. Check: the booking email arrives at marcoscuellar@elipangroup.com, and the "Got it" email arrives at the address you used.
+1. With **Stripe test-mode keys** set, open the preview → Book a session → answer the five questions with your own email → pick two dates → Continue to payment — $129 → pay with test card 4242 4242 4242 4242, any future date, any CVC.
+2. Check: the pop-up says "Payment received", the "PAID" booking email arrives at marcoscuellar@elipangroup.com, and the "Payment received" email arrives at the address you used.
+3. Also try a declined card (4000 0000 0000 0002): it should stay on payment and let you retry, with no emails sent.
 3. If it fails: Vercel → project → **Logs** and look for lines starting with `Booking:`.
 
 ### E. work.makingcuepa.com (separate, needs Marcos's decision)

@@ -23,13 +23,14 @@ learners, and anyone who feels behind on AI.
 For business and team work, see CUEPA for Work: https://www.makingcuepa.com/
 
 ## How booking works
-1. Book a session on the website (name, email, what's on your mind)
-2. Marcos or someone on the team reaches out with details and times
-3. Pay for the session through a secure link to hold your time
-4. Meet for one hour, then receive your recap
+1. Answer five quick questions on the website: where you'd like help, where you are with AI, the tools you use, one task, and your name and email
+2. Review your answers and pick two or three preferred dates
+3. Pay $129 securely through Stripe to confirm your purchase
+4. Marcos emails you to confirm your session time
+5. Meet for one hour over video and leave with your personalized dashboard
 
 ## Pricing
-Shared by email after you book. Booking is free.
+$129 for one hour of personal AI coaching over video, including a personalized dashboard with the prompts and goals developed together. Payment confirms the purchase.
 
 ## Contact
 Email: marcoscuellar@elipangroup.com
