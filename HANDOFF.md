@@ -31,6 +31,10 @@ CUEPA is split into two offers, both under ELIPAN GROUP:
   - built in: "Book another hour" and promotions
 - **Ongoing:** "The hour ends. The learning doesn't." Weekly briefing plus more hours.
 
+### Brand rules
+
+Follow the **CUEPA for You Brand Book** (link in section 8). Quick version: Sun `#F9C933` is the only accent (never Turquoise), Sun-colored text on white uses Deep Sun `#7A5A00`, gold `#D9A400` only for a closing period, Anton headlines end on a Sun period, buttons are pills.
+
 ### Do NOT
 
 - Frame it as "bring one task" or "your one thing." That is not the product.
@@ -204,6 +208,9 @@ HANDOFF.md            this file
 
 ## 8. Reference links
 
+- **CUEPA for You Brand Book (follow this for all copy, color, type, logo and photo decisions):** https://claude.ai/artifact/YZSQ2FcG2YVBPs5BiE1B3t (copy in project docs: `claude/cuepa-for-you-brand-book.html`)
+- Current page preview (matches this repo): https://claude.ai/artifact/3G48EKPMuobAg3JGQ3TKSg
+- SEO audit, Oct 20, 2026: https://claude.ai/artifact/CPK2eEMtz3Chvyd6ohpX4p
 - Live draft preview: https://claude.ai/artifact/MNKVWbp9AYjXddkpayEL1D
 - Older main preview: https://claude.ai/artifact/Vakk11EETmK7akvRnKf6nJ
 - SEO and AI visibility audit: https://claude.ai/artifact/4U8u5NUpa8Fqq6AZo4Rk7p
