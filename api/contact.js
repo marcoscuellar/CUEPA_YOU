@@ -77,8 +77,8 @@ export default async function handler(req, res) {
 function confirmation(first, answers, summary) {
   const subject = `Got it, ${first}. Your CUEPA for You hour is almost set.`;
   const steps = [
-    "Marcos will email you a payment link. Once it's paid, your hour is set.",
-    "We'll find a time that works for you.",
+    "Pay for your hour on the booking page. If that didn't work, just reply and Marcos will send you a payment link.",
+    "Once it's paid, Marcos will email you to pick a time that works for you.",
     "We meet over video, set up your AI together, and build your dashboard as we go.",
   ];
   const text = [

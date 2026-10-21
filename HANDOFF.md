@@ -82,8 +82,11 @@ Top bar: transparent over the hero, smoky translucent glass after scrolling. "Me
    - Where would you most like AI to make room? (required, pick any)
    - What feels like too much right now? (required)
    - What do you want to walk away with? (optional)
-3. **Step 3 · Lock in your hour:** "Got it. Talk soon." Says Marcos will email the payment link.
-   - **To send people straight to payment:** in `index.html`, set `const PAY_URL="https://...";` (search for `PAY_URL`). A "Continue to payment" button then appears.
+3. **Step 3 · Lock in your hour (in-page payment):** right after the answers send, Stripe's secure checkout appears inside the pop-up. When it's paid: "You're booked. Got it. Talk soon. Marcos will email you to pick your time together."
+   - Built by `api/checkout.js` (creates a Stripe Checkout Session, `ui_mode: embedded_page`, `redirect_on_completion: if_required`). No packages to install; it calls Stripe's API directly.
+   - If a bank asks for extra verification, Stripe sends the person back to `/?checkout=cs_...` and the pop-up reopens with the result.
+   - **Fallback:** if the Stripe variables aren't set (or Stripe can't load), the pop-up shows the old "Marcos will email the price and your payment link" screen. `PAY_URL` in `index.html` still works for that fallback.
+   - Stripe sends Marcos its own "payment received" email (check Stripe → Settings → Notifications). The booking answers still arrive by email first, even if someone doesn't finish paying.
 
 On submit the page POSTs JSON to **`/api/contact`** (this site's own function, `api/contact.js`):
 
@@ -117,6 +120,10 @@ One question per screen, with a short pre-written reaction to each answer ("Perf
    - `RESEND_API_KEY` = the key from step B (required)
    - `CONTACT_TO` = `marcoscuellar@elipangroup.com` (optional, this is the default)
    - `CONTACT_FROM` = `CUEPA <marcoscuellar@elipangroup.com>` (optional, this is the default)
+   - `STRIPE_SECRET_KEY` = Stripe → Developers → API keys → Secret key (required for payment; never paste it in chats)
+   - `STRIPE_PUBLISHABLE_KEY` = the Publishable key from the same page
+   - `STRIPE_PRICE_ID` = the `price_...` ID of a Stripe product "CUEPA for You, 1-hour session" (Product catalog → add product → one-time price)
+   - Test first with the **test-mode** keys and card 4242 4242 4242 4242, then switch all three to live keys.
 3. Redeploy after adding the variables.
 4. **Settings → Domains** → add **you.makingcuepa.com**. makingcuepa.com's DNS is already on Vercel (team `team_G7WBdov66WzlS910sSqwaJB9`), so it connects without DNS changes.
 
@@ -187,7 +194,7 @@ HANDOFF.md            this file
 ## 7. Open items
 
 1. Resend key with elipangroup.com sending, set in the new Vercel project.
-2. Payment tool and link (Stripe, Square, PayPal?) → set `PAY_URL`.
+2. Payment: Stripe in-page checkout is built. Add the three `STRIPE_*` variables in Vercel, test with test keys, then switch to live.
 3. Approve or edit the booking questions; decide on the one-question-at-a-time version.
 4. Make sure the questionnaire promise on the page ("Tell us what's on your plate") matches what happens.
 5. Decide work.makingcuepa.com (see 4E).
