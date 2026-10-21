@@ -339,6 +339,25 @@ html{scroll-behavior:smooth}
   .start .txt{padding:40px 24px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}[data-reveal]{opacity:1;transform:none}}
+/* Hero: backyard photo. Wide group shot, so the text sits in the dark sky at the top and
+   the whole group shows below it. Nothing (text or card) sits on people (brand hard rule). */
+@media (min-width:701px){
+  .hero{display:block;min-height:0;padding-bottom:calc(100vw*817/1926*.64)}
+  .hero .wrap{display:block;padding-top:124px;padding-bottom:26px}
+  .hero picture{inset:auto 0 0 0}
+  .hero picture img{position:relative;inset:auto;display:block;width:100%;height:auto;aspect-ratio:1926/817;object-position:50% 50%}
+  .hero .shade{inset:auto 0 0 0;height:calc(100vw*817/1926);background:linear-gradient(180deg,#141414 0%,rgba(20,20,20,.72) 14%,rgba(20,20,20,.18) 30%,rgba(20,20,20,0) 40%),linear-gradient(0deg,rgba(20,20,20,.35),transparent 16%)}
+  .hero-copy{max-width:min(860px,64vw)}
+  .hero h1{margin:18px 0 20px}
+  .hero .lede{max-width:600px}
+  .hero .ctas{margin:26px 0 18px}
+  .hero .day{bottom:auto;top:132px}
+}
+@media (max-width:700px){
+  .hero picture img{aspect-ratio:4/3;object-position:56% 55%}
+  .hero picture::after{height:22%;background:linear-gradient(180deg,rgba(20,20,20,0),#141414)}
+  .hero .wrap{margin-top:0;padding-top:26px}
+}
 </style></head><body>
 
 <header class="top">
@@ -362,7 +381,7 @@ html{scroll-behavior:smooth}
 
 <!-- HERO -->
 <section class="hero">
-  <picture><img src="img/hero-couple.webp" width="1672" height="941" fetchpriority="high" decoding="async" alt="Two people at a kitchen table, smiling and working through something together on a laptop"></picture>
+  <picture><img src="img/hero-backyard.webp" srcset="img/hero-backyard-1200.webp 1200w, img/hero-backyard.webp 1926w" sizes="100vw" width="1926" height="817" fetchpriority="high" decoding="async" alt="Friends laughing around a fire pit in a backyard at night, under string lights"></picture>
   <div class="shade"></div>
   <div class="wrap">
     <div class="hero-copy">

@@ -61,7 +61,7 @@ Follow the **CUEPA for You Brand Book** (link in section 8). Quick version: Sun 
 
 | # | Section (id) | Headline | Notes |
 |---|---|---|---|
-| 1 | Hero | MAKE ROOM FOR MORE OF YOU. | Full-bleed couple photo, white text, moody left shade. Small floating "Your hour" card bottom-right on wide screens (hidden 701–1199px, stacked under text on phones). Card rows link to #meet, #changes, #dashboard. |
+| 1 | Hero | MAKE ROOM FOR MORE OF YOU. | Backyard fire-pit group photo (`img/hero-backyard.webp`, Oct 21, 2026), full width at the bottom of the hero. Text sits in the dark sky above everyone's heads; the "Your hour" card sits top-right (wide screens only). Nothing overlaps people. Phones: photo on top, text below. |
 | 2 | Facts row (.feats) | — | 1 hour, one-on-one · Video call, anywhere · No tech skills needed · Your own dashboard |
 | 3 | Problem (#familiar) | AI WAS SUPPOSED TO GIVE YOU TIME BACK. | Animated mock phone: AI alerts pile in, then a text from "Jess": "why is there SO much of this?? i don't even know where to start". Plus evening photo and 3 quote cards. |
 | 4 | Bridge (#meet) | IT'S A LOT. WE'LL START WITH YOU. | Start where you are / Hand off the grunt work / Get back to your life. Closer: "You stay in the middle. AI makes the room." |
@@ -153,7 +153,8 @@ index.html            the whole site (HTML, CSS, JS in one file)
 api/contact.js        booking form handler (Vercel function, Resend)
 package.json          marks the function as an ES module, Node 18+
 img/                  photos and logos used by the page
-  hero-couple.jpg       hero (wide couple photo)
+  hero-backyard.webp    hero (friends around a fire pit), plus a 1200px version
+  hero-couple.jpg       old hero, still used as the social share image (og:image)
   evening.jpg           problem section
   hero-dinner.jpg       "Making room for Friends."
   cooking.jpg           "Making room for Dinner at home."
