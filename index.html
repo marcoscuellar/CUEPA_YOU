@@ -99,20 +99,38 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stro
 }
 @media (min-width:701px) and (max-width:1199px){.hero .day{display:none}}
 /* Hero, matched to makingcuepa.com: big stacked headline, brand eyebrow, one "done" card, scroll cue */
-.hero-copy{max-width:min(700px,56vw)}
-.hero h1{font-size:clamp(52px,7.6vw,124px);line-height:.92;letter-spacing:-.02em;margin:14px 0 26px}
-.hero h1 .ln{display:block;color:#fff}
-.hero h1 .ln span{color:var(--sun)}
+.hero{min-height:100vh;align-items:flex-end}
+.hero .wrap{padding-top:120px;padding-bottom:56px;align-items:flex-end}
+.hero .shade{background:linear-gradient(90deg,rgba(14,14,14,.82) 0%,rgba(14,14,14,.5) 36%,rgba(14,14,14,0) 60%),linear-gradient(0deg,rgba(14,14,14,.7),transparent 45%),linear-gradient(180deg,rgba(14,14,14,.45),transparent 22%)!important}
+.hero-copy{max-width:min(820px,60vw)}
+.hero .lede{font-weight:700!important;max-width:min(560px,44vw)!important}
+.hero .ctas{align-items:center;gap:28px}
+@media (max-width:700px){
+  /* Phone: copy sits on the photo, like makingcuepa.com — crop on the face, fade to black under the text */
+  .hero{min-height:100svh!important;display:flex!important;align-items:flex-end}
+  .hero picture{position:absolute!important;inset:0}
+  .hero picture::after{display:none}
+  .hero picture img{position:absolute!important;inset:0;width:100%;height:100%!important;aspect-ratio:auto!important;object-fit:cover;object-position:68% 18%!important}
+  .hero .shade{display:block!important;background:linear-gradient(180deg,rgba(14,14,14,.5) 0%,rgba(14,14,14,0) 18%,rgba(14,14,14,0) 30%,rgba(14,14,14,.82) 52%,#141414 78%)!important}
+  .hero .wrap{margin-top:0!important;padding-top:260px!important;padding-bottom:36px}
+  .hero .ctas{gap:20px}
+}
+.hero-link{font:700 12px Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#fff;display:inline-flex;gap:12px;align-items:center}
+.hero-link span{font-size:18px}
+.hero-link:hover{color:var(--sun)}
+.hero h1{font-size:clamp(56px,7.6vw,124px);line-height:.88;letter-spacing:-.01em;margin:14px 0 28px}
+.hero h1 .ln{display:block;color:#fff;white-space:nowrap}
+.hero h1 .ln-accent{color:var(--sun)}
 .hero-eyebrow{font:700 11px Inter,sans-serif!important;letter-spacing:.2em!important;text-transform:uppercase;color:#fff!important}
-.hero .note{position:absolute;right:56px;bottom:40px;z-index:3;width:300px;background:rgba(18,18,18,.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:15px 16px;box-shadow:0 22px 55px -24px rgba(0,0,0,.85);color:#fff}
+.hero .note{position:relative;margin:0 0 44px;z-index:3;width:300px;background:rgba(18,18,18,.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:15px 16px;box-shadow:0 22px 55px -24px rgba(0,0,0,.85);color:#fff}
 .note-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .note-top .av{width:23px;height:23px;border-radius:50%;background:var(--sun);flex:none}
 .note-top b{font-family:Anton,sans-serif;font-weight:400;font-size:12px;letter-spacing:.02em}
 .note-top i{font-style:normal;font-size:11px;color:rgba(255,255,255,.7)}
 .note-top em{margin-left:auto;font-style:normal;font:700 9px Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--sun)}
 .hero .note p{font:400 14px/1.5 Inter,sans-serif;color:rgba(255,255,255,.96)}
-.hero-scroll{position:absolute;z-index:3;right:20px;top:50%;translate:0 -50%;writing-mode:vertical-rl;font:700 10px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.85)}
-@media (max-width:1199px){.hero .note{display:none}}
+.hero-scroll{position:absolute;z-index:3;right:34px;bottom:30px;writing-mode:vertical-rl;font:700 10px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+@media (max-width:1024px){.hero .note{display:none}}
 @media (max-width:900px){.hero-scroll{display:none}}
 
 /* Mock phone in Sound familiar */
@@ -336,7 +354,7 @@ html{scroll-behavior:smooth}
   .top .wrap{height:66px;gap:12px}
   .brand{gap:12px}.brand .word{font-size:24px}.brand .mark{width:22px;height:22px}.brand .lock{gap:8px}.brand .sep{height:28px}.brand .sub strong{font-size:14px}.brand .sub small{display:none}
   .btn-sm{padding:11px 14px;font-size:11px}.menu .btn{width:auto;white-space:nowrap}
-  .hero{min-height:0;display:block}.hero .shade{display:none}
+  .hero{min-height:0!important;display:block}.hero .shade{display:none}
   .hero picture{position:relative;width:auto}
   .hero picture img{position:relative;height:auto;aspect-ratio:5/4;object-position:74% 40%}
   .hero-copy{max-width:none}
@@ -345,7 +363,7 @@ html{scroll-behavior:smooth}
   .hero picture::after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(180deg,rgba(20,20,20,0),rgba(20,20,20,.75) 55%,#141414);pointer-events:none}
   .hero .wrap{margin-top:-96px;padding-top:0}
   .hero::before{height:110px}
-  .hero .lede{font-size:17px;max-width:none}.hero-copy{max-width:none}.hero h1{font-size:clamp(48px,14vw,72px)}.hero .back{font-size:15px}.hero .price-line{font-size:14.5px}
+  .hero .lede{font-size:17px;max-width:none!important}.hero-copy{max-width:none}.hero h1{font-size:clamp(40px,13.5vw,72px)}.hero .back{font-size:15px}.hero .price-line{font-size:14.5px}
   .btn{padding:17px 24px;font-size:13px;width:100%}
   .menu .btn-sm{padding:9px 14px;font-size:10.5px;letter-spacing:.06em;width:auto;border-radius:999px}
   .logo img{height:34px}
@@ -383,20 +401,20 @@ html{scroll-behavior:smooth}
   <div class="shade"></div>
   <div class="wrap">
     <div class="hero-copy">
+      <aside class="note" aria-label="Example: what CUEPA handles for you">
+      <div class="note-top"><span class="av" aria-hidden="true"></span><b>CUEPA</b><i>6:15 PM</i><em>Done</em></div>
+      <p>2 school replies drafted in your voice, waiting for you to send. Tonight&rsquo;s grocery list is ready.</p>
+    </aside>
       <p class="eyebrow hero-eyebrow">CUEPA for You · by ELIPAN GROUP</p>
-      <h1 class="anton" aria-label="Make room for more of you."><span class="ln">Make room</span><span class="ln">for more</span><span class="ln">of you<span>.</span></span></h1>
+      <h1 class="anton" aria-label="Make room for more of you."><span class="ln">Make room for</span><span class="ln ln-accent">more of you.</span></h1>
       <p class="lede">One-on-one AI help for everyday life. We cut through the noise with you, set AI up around your life, and build your own AI command center together.</p>
       <div class="ctas">
         <a class="btn btn-sun js-book" href="#book">Book a session <span aria-hidden="true">›</span></a>
-        <a class="btn btn-ghost" href="#how"><span class="play" aria-hidden="true"></span>See how it works</a>
+        <a class="hero-link" href="#how">See how it works <span aria-hidden="true">↘</span></a>
       </div>
       <p class="price-line">$129 · One-hour personal AI coaching · Your personalized dashboard included.</p>
       <p class="back">No tech skills needed. Just you, us, and one hour.</p>
     </div>
-    <aside class="note" aria-label="Example: what CUEPA handles for you">
-      <div class="note-top"><span class="av" aria-hidden="true"></span><b>CUEPA</b><i>6:15 PM</i><em>Done</em></div>
-      <p>2 school replies drafted in your voice, waiting for you to send. Tonight&rsquo;s grocery list is ready.</p>
-    </aside>
 
   </div>
   <p class="hero-scroll" aria-hidden="true">Scroll to make room</p>
@@ -762,8 +780,6 @@ function runMotion(){
   const heroEls=[...document.querySelectorAll(".hero-copy > *")];
   hide(heroEls);
   animate(heroEls,{opacity:[0,1],y:[26,0],filter:["blur(8px)","blur(0px)"]},{duration:.75,delay:stagger(.11,{startDelay:.1}),ease});
-  const note=document.querySelector(".hero .note");
-  if(note){hide([note]);animate(note,{opacity:[0,1],y:[16,0],filter:["blur(8px)","blur(0px)"]},{duration:.6,delay:.9,ease});}
   const day=document.querySelector(".hero .day");
   if(day){
     const cards=[...day.querySelectorAll(".dcard")];hide([day,...cards]);
