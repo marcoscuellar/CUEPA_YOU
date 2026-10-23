@@ -333,6 +333,15 @@ html{scroll-behavior:smooth}
 .step .n{width:46px;height:46px;border-radius:50%;background:var(--sun);display:grid;place-items:center;font:700 16px Inter,sans-serif;margin-bottom:20px}
 .step h3{font:700 22px Inter,sans-serif;letter-spacing:-.02em}
 .step p{font-size:16.5px;color:var(--muted);line-height:1.55;margin-top:10px}
+.price-band{background:#141414;color:#fff;padding:88px 0}
+.price-band .eyebrow{color:var(--sun)}
+.pb-row{display:flex;align-items:center;gap:56px;flex-wrap:wrap;margin:18px 0 28px}
+.pb-price{font-size:clamp(88px,11vw,168px);line-height:.85;margin:0}
+.pb-price span{color:var(--sun)}
+.pb-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.pb-list li{font:600 clamp(18px,1.7vw,24px)/1.3 Inter,sans-serif;padding-left:22px;border-left:3px solid var(--sun)}
+.pb-back{font:400 18px/1.5 Inter,sans-serif;color:rgba(255,255,255,.85)}
+@media (max-width:700px){.price-band{padding:64px 0}.pb-row{gap:24px}.pb-back{font-size:16px}}
 .how-cta{margin-top:46px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
 .how-cta span{color:var(--muted);font-size:15px}
 
@@ -447,8 +456,6 @@ html{scroll-behavior:smooth}
       <div class="ctas">
         <a class="hero-link" href="#how">See how it works <span aria-hidden="true">↘</span></a>
       </div>
-      <p class="price-line">$129 · One-hour personal AI coaching · Your personalized dashboard included.</p>
-      <p class="back">No tech skills needed. Just you, us, and one hour.</p>
     </div>
 
   </div>
@@ -574,6 +581,21 @@ html{scroll-behavior:smooth}
 </section>
 
 <!-- START HERE -->
+<!-- PRICE -->
+<section class="price-band" id="price" aria-labelledby="priceH">
+  <div class="wrap pb" data-reveal>
+    <p class="eyebrow">Your hour</p>
+    <div class="pb-row">
+      <h2 class="anton pb-price" id="priceH">$129<span>.</span></h2>
+      <ul class="pb-list">
+        <li>One-hour personal AI coaching</li>
+        <li>Your personalized dashboard included</li>
+      </ul>
+    </div>
+    <p class="pb-back">No tech skills needed. Just you, us, and one hour.</p>
+  </div>
+</section>
+
 <section class="start">
   <div class="wrap">
     <div class="box" data-reveal>
