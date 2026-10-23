@@ -102,23 +102,26 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stro
 .hero{min-height:100vh;align-items:flex-end}
 .hero .wrap{padding-top:120px;padding-bottom:56px;align-items:flex-end}
 .hero .shade{background:linear-gradient(90deg,rgba(14,14,14,.82) 0%,rgba(14,14,14,.5) 36%,rgba(14,14,14,0) 60%),linear-gradient(0deg,rgba(14,14,14,.7),transparent 45%),linear-gradient(180deg,rgba(14,14,14,.45),transparent 22%)!important}
-.hero-copy{max-width:min(820px,60vw)}
+.hero-copy{max-width:min(700px,46vw)}
+.hero picture img{object-position:55% 40%!important}
 .hero .lede{font-weight:700!important;max-width:min(560px,44vw)!important}
 .hero .ctas{align-items:center;gap:28px}
 @media (max-width:700px){
-  /* Phone: copy sits on the photo, like makingcuepa.com — crop on the face, fade to black under the text */
-  .hero{min-height:100svh!important;display:flex!important;align-items:flex-end}
-  .hero picture{position:absolute!important;inset:0}
-  .hero picture::after{display:none}
-  .hero picture img{position:absolute!important;inset:0;width:100%;height:100%!important;aspect-ratio:auto!important;object-fit:cover;object-position:68% 18%!important}
-  .hero .shade{display:block!important;background:linear-gradient(180deg,rgba(14,14,14,.5) 0%,rgba(14,14,14,0) 18%,rgba(14,14,14,0) 30%,rgba(14,14,14,.82) 52%,#141414 78%)!important}
-  .hero .wrap{margin-top:0!important;padding-top:260px!important;padding-bottom:36px}
+  /* Phone: photo on top, face kept clear; copy sits on the faded bottom of the photo, never on his face */
+  .hero{min-height:0!important;display:block!important}
+  .hero picture{position:relative!important;display:block}
+  .hero picture img{position:relative!important;width:100%;height:auto!important;aspect-ratio:4/5!important;object-fit:cover;object-position:70% 20%!important}
+  .hero picture::after{display:block!important;content:"";position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(180deg,rgba(20,20,20,0),rgba(20,20,20,.8) 60%,#141414)}
+  .hero .shade{display:none!important}
+  .hero .wrap{margin-top:-120px!important;padding-top:0!important;padding-bottom:36px}
   .hero .ctas{gap:20px}
+  .hero h1 .ln{white-space:normal!important}
+  .hero-copy{min-width:0;max-width:100%!important}
 }
 .hero-link{font:700 12px Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#fff;display:inline-flex;gap:12px;align-items:center}
 .hero-link span{font-size:18px}
 .hero-link:hover{color:var(--sun)}
-.hero h1{font-size:clamp(56px,7.6vw,124px);line-height:.88;letter-spacing:-.01em;margin:14px 0 28px}
+.hero h1{font-size:clamp(52px,6.4vw,108px);line-height:.88;letter-spacing:-.01em;margin:14px 0 28px}
 .hero h1 .ln{display:block;color:#fff;white-space:nowrap}
 .hero h1 .ln-accent{color:var(--sun)}
 .hero-eyebrow{font:700 11px Inter,sans-serif!important;letter-spacing:.2em!important;text-transform:uppercase;color:#fff!important}
