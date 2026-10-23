@@ -12,7 +12,7 @@
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script><script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://you.makingcuepa.com/#org", "name": "CUEPA for You", "url": "https://you.makingcuepa.com/", "email": "marcoscuellar@elipangroup.com", "sameAs": ["https://www.makingcuepa.com"], "parentOrganization": {"@type": "Organization", "name": "ELIPAN GROUP"}, "founder": {"@type": "Person", "@id": "https://you.makingcuepa.com/#marcos", "name": "Marcos Cuellar", "description": "Has been learning and studying AI since it came out."}}, {"@type": "WebSite", "@id": "https://you.makingcuepa.com/#site", "url": "https://you.makingcuepa.com/", "name": "CUEPA for You", "publisher": {"@id": "https://you.makingcuepa.com/#org"}, "inLanguage": "en"}, {"@type": "Service", "@id": "https://you.makingcuepa.com/#session", "name": "One-on-one AI session", "serviceType": "Personal AI coaching", "description": "A one-hour, one-on-one video session with Marcos and the CUEPA team. We cut through the AI noise with you, decide together what AI should take off your plate and what stays yours, set it up around your life, and build your own AI dashboard: your calendar, your prompts and goals, and a weekly AI briefing.", "provider": {"@id": "https://you.makingcuepa.com/#org"}, "audience": {"@type": "Audience", "audienceType": "Individuals, including people with no tech background"}, "availableChannel": {"@type": "ServiceChannel", "name": "Video call"}, "areaServed": "Worldwide", "offers": {"@type": "Offer", "price": "129.00", "priceCurrency": "USD", "description": "One-hour personal AI coaching over video, personalized dashboard included."}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "I'm not a tech person. Is this for me?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Most people we work with are beginners. We start wherever you are, even if that means setting up your first AI app together."}}, {"@type": "Question", "name": "What do we actually do in the hour?", "acceptedAnswer": {"@type": "Answer", "text": "We get to know how your life runs, cut through the AI noise, and decide together what AI should take off your plate and what stays yours. Then we set it up and build your dashboard, live, on your own device."}}, {"@type": "Question", "name": "Where do sessions happen?", "acceptedAnswer": {"@type": "Answer", "text": "Over video call. It's virtual, so you can join from anywhere."}}, {"@type": "Question", "name": "Who will I be working with?", "acceptedAnswer": {"@type": "Answer", "text": "Marcos Cuellar and the CUEPA team. Marcos has been learning and studying AI since it came out, and builds AI systems for businesses through CUEPA for Work. You get that same experience, pointed at your everyday life."}}, {"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "$129 for one hour of personal AI coaching over video, including your personalized dashboard with the prompts and goals we develop together. Payment confirms your purchase. After you pay, Marcos emails you to confirm your session time."}}, {"@type": "Question", "name": "Do I need ChatGPT or another app first?", "acceptedAnswer": {"@type": "Answer", "text": "No. If you don't have an AI app yet, we'll pick one with you and set it up during your hour. If you already use ChatGPT or another app, we'll build on what you have."}}, {"@type": "Question", "name": "Is this only for business owners?", "acceptedAnswer": {"@type": "Answer", "text": "No. CUEPA for You is for individuals. If you need help for your business or team, that's CUEPA for Work."}}]}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{color-scheme:light;--ink:#141414;--ink2:#1d1d1d;--muted:#5d5d5d;--paper:#ffffff;--soft:#f8f7f4;--line:#e8e6e1;--sun:#F9C933;--sun-hover:#ffd453;--sun-soft:#fff6d9;--sun-text:#7a5a00}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
@@ -124,6 +124,34 @@ svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stro
 .hero h1{font-size:clamp(52px,6.4vw,108px);line-height:.88;letter-spacing:-.01em;margin:14px 0 28px}
 .hero h1 .ln{display:block;color:#fff;white-space:nowrap}
 .hero h1 .ln-accent{color:var(--sun)}
+/* Top menu + width matched to makingcuepa.com */
+.nav-w{height:92px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw}
+.nav-w.solid{color:#fff}
+.nw-brand{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none}
+.nw-b1{fill:#fff}
+.nw-word{display:inline-flex;flex-direction:column;line-height:1}
+.nw-name{font:700 14px Inter,sans-serif;letter-spacing:.02em;white-space:nowrap}
+.nw-name span{font-weight:500;letter-spacing:0}
+.nw-by{font:600 8px Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;opacity:.62;margin-top:4px;white-space:nowrap}
+.nw-tabs{display:flex;align-items:center;gap:4px}
+.nw-tab{position:relative;display:inline-flex;align-items:center;padding:12px 16px;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62);text-decoration:none;transition:color .25s}
+.nw-tab:hover,.nw-tab.is-active{color:#fff}
+.nw-tab.is-active::after{content:"";position:absolute;left:16px;right:16px;bottom:4px;height:2px;background:var(--sun)}
+.nw-cta{display:inline-flex;align-items:center;gap:10px;background:var(--sun);color:#141414;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;padding:14px 22px;text-decoration:none;white-space:nowrap}
+.nw-cta:hover{background:var(--sun-hover)}
+.nw-burger{display:none;position:relative;width:44px;height:44px;padding:0;border:0;background:none;cursor:pointer}
+.nw-burger span{position:absolute;left:11px;width:22px;height:2px;background:#fff;transition:transform .28s cubic-bezier(.22,1,.36,1)}
+.nw-burger span:first-child{top:18px}.nw-burger span:last-child{top:26px}
+.nw-burger[aria-expanded="true"] span:first-child{transform:translateY(4px) rotate(45deg)}
+.nw-burger[aria-expanded="true"] span:last-child{transform:translateY(-4px) rotate(-45deg)}
+.nw-drawer{position:fixed;inset:92px 0 0;z-index:59;background:#141414;padding:14px 22px 40px;display:flex;flex-direction:column;gap:2px;overflow-y:auto}
+.nw-drawer[hidden]{display:none}
+.nw-dlink{display:block;padding:20px 4px;border-bottom:1px solid rgba(255,255,255,.1);font:500 14px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none}
+.nw-dcta{margin-top:26px;display:inline-flex;justify-content:center;gap:10px;background:var(--sun);color:#141414;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;padding:18px 22px;text-decoration:none}
+.hero .wrap{max-width:none!important;padding-left:5vw!important;padding-right:5vw!important}
+.wrap{max-width:1664px;padding:0 112px}
+@media (max-width:900px){.nw-tabs{display:none}.nav-w{padding:0 22px}.nw-burger{display:block}.wrap{padding:0 22px}.hero .wrap{padding-left:22px!important;padding-right:22px!important}}
+@media (max-width:560px){.nav-w .nw-cta{display:none}.nav-w{height:72px}.nw-drawer{inset:72px 0 0}}
 .hero-eyebrow{font:700 11px Inter,sans-serif!important;letter-spacing:.2em!important;text-transform:uppercase;color:#fff!important}
 .hero .note{position:relative;margin:0 0 44px;z-index:3;width:300px;background:rgba(18,18,18,.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:15px 16px;box-shadow:0 22px 55px -24px rgba(0,0,0,.85);color:#fff}
 .note-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
@@ -379,22 +407,27 @@ html{scroll-behavior:smooth}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}[data-reveal]{opacity:1;transform:none}}
 </style></head><body>
 
-<header class="top">
-  <div class="wrap">
-    <a class="brand logo" href="#top" aria-label="CUEPA for You by ELIPAN GROUP"><img class="lg-dark" src="img/cuepa-for-you-logo-on-dark.svg" alt="CUEPA for You by ELIPAN GROUP" width="691" height="140"><img class="lg-light" src="img/cuepa-for-you-logo-on-light.svg" alt="" aria-hidden="true" width="691" height="140"></a>
-    <nav class="menu" aria-label="Main navigation">
-      <div class="dd">
-        <button type="button" class="dd-btn" id="ddBtn" aria-expanded="false" aria-controls="ddPanel">Menu <svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <div class="dd-panel" id="ddPanel" hidden>
-          <a href="#how">How it works</a>
-          <a href="#changes">What you get</a>
-          <a href="#faq">FAQ</a>
-        </div>
-      </div>
-      <a class="btn btn-sun btn-sm js-book" href="#book">Book a session</a>
-    </nav>
-  </div>
+<header class="top nav-w">
+  <a class="nw-brand" href="#top" aria-label="CUEPA for You by ELIPAN GROUP">
+    <svg width="31" height="31" viewBox="0 0 100 100" aria-hidden="true"><rect class="nw-b1" x="14" y="14" width="30" height="72"/><rect x="56" y="14" width="30" height="72" fill="#F9C933"/></svg>
+    <span class="nw-word"><span class="nw-name">CUEPA<span> for You</span></span><span class="nw-by">by ELIPAN GROUP</span></span>
+  </a>
+  <nav class="nw-tabs" aria-label="Main navigation">
+    <a class="nw-tab is-active" href="#top" data-spy="top">Making room</a>
+    <a class="nw-tab" href="#how" data-spy="how">How it works</a>
+    <a class="nw-tab" href="#dashboard" data-spy="dashboard">Dashboard</a>
+    <a class="nw-tab" href="#faq" data-spy="faq">FAQ</a>
+  </nav>
+  <a class="nw-cta js-book" href="#book">Book a session <span aria-hidden="true">↗</span></a>
+  <button type="button" class="nw-burger" id="nwBurger" aria-label="Open menu" aria-expanded="false" aria-controls="nwDrawer"><span></span><span></span></button>
 </header>
+<div class="nw-drawer" id="nwDrawer" hidden>
+  <a class="nw-dlink" href="#top">Making room</a>
+  <a class="nw-dlink" href="#how">How it works</a>
+  <a class="nw-dlink" href="#dashboard">Dashboard</a>
+  <a class="nw-dlink" href="#faq">FAQ</a>
+  <a class="nw-dcta js-book" href="#book">Book a session <span aria-hidden="true">↗</span></a>
+</div>
 
 <main id="top">
 
@@ -412,7 +445,6 @@ html{scroll-behavior:smooth}
       <h1 class="anton" aria-label="Make room for more of you."><span class="ln">Make room for</span><span class="ln ln-accent">more of you.</span></h1>
       <p class="lede">One-on-one AI help for everyday life. We cut through the noise with you, set AI up around your life, and build your own AI command center together.</p>
       <div class="ctas">
-        <a class="btn btn-sun js-book" href="#book">Book a session <span aria-hidden="true">›</span></a>
         <a class="hero-link" href="#how">See how it works <span aria-hidden="true">↘</span></a>
       </div>
       <p class="price-line">$129 · One-hour personal AI coaching · Your personalized dashboard included.</p>
@@ -1107,12 +1139,15 @@ if(location.hash==="#book")openContact();
   load();if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","");
   confirmPaid(sid);})();
 
-(()=>{const b=document.getElementById("ddBtn"),p=document.getElementById("ddPanel");if(!b||!p)return;
-const set=o=>{p.hidden=!o;b.setAttribute("aria-expanded",o)};
-b.addEventListener("click",e=>{e.stopPropagation();set(p.hidden)});
-p.addEventListener("click",e=>{if(e.target.closest("a"))set(false)});
-document.addEventListener("click",e=>{if(!p.hidden&&!e.target.closest(".dd"))set(false)});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!p.hidden){set(false);b.focus()}});})();
+(()=>{const b=document.getElementById("nwBurger"),d=document.getElementById("nwDrawer");if(!b||!d)return;
+const set=o=>{d.hidden=!o;b.setAttribute("aria-expanded",o);b.setAttribute("aria-label",o?"Close menu":"Open menu");document.body.style.overflow=o?"hidden":""};
+b.addEventListener("click",()=>set(d.hidden));
+d.addEventListener("click",e=>{if(e.target.closest("a"))set(false)});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!d.hidden){set(false);b.focus()}});})();
+(()=>{const tabs=[...document.querySelectorAll(".nw-tab")];if(!tabs.length||!("IntersectionObserver" in window))return;
+const map={top:document.querySelector(".hero")};tabs.forEach(t=>{const id=t.dataset.spy;if(id!=="top")map[id]=document.getElementById(id)});
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const id=Object.keys(map).find(k=>map[k]===e.target);tabs.forEach(t=>t.classList.toggle("is-active",t.dataset.spy===id))}})},{rootMargin:"-45% 0px -50% 0px"});
+Object.values(map).forEach(el=>el&&io.observe(el));})();
 
 (()=>{const ph=document.querySelector(".phone");if(!ph||!("IntersectionObserver" in window))return;
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){ph.classList.add("play");io.disconnect()}})},{threshold:.35});io.observe(ph);})();
