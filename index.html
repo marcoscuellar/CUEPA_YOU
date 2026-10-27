@@ -1056,7 +1056,7 @@ async function goPay(ui){
       let r,d;
       try{r=await fetch(CHECKOUT_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload())});d=await r.json().catch(()=>({}))}
       catch(e){throw new Error("We couldn't reach payment just now."+SAVED)}
-      if(r.status===503||d.unavailable)throw new Error("Payment isn't available right now."+SAVED+" Or email "+CONTACT_EMAIL+".");
+      if(r.status===503||d.unavailable){showEmailRequest();return}
       if(!r.ok||!d.clientSecret)throw new Error((d.error||"We couldn't open payment just now.")+SAVED);
       data=d;lastCheckout={sig:sig(),at:Date.now(),data};
     }
@@ -1101,6 +1101,26 @@ async function confirmPaid(sid){
     return payProblem("That payment didn't go through, so nothing was charged. You can try again.",()=>goPay(payUI));
   }
   payProblem("We couldn't confirm your payment just now. Please don't pay again. Check again in a moment, or email "+CONTACT_EMAIL+".",()=>confirmPaid(sid));
+}
+/* Payment not connected yet: hand the booking to the visitor's email app instead of a dead end. */
+function bookingMailto(){
+  const lines=["Hi Marcos, I'd like to book a CUEPA for You session ($129).","",
+    "Name: "+A.name.trim(),"Email: "+A.email.trim(),
+    "What I want room for: "+(A.priority||""),"Where I am with AI: "+(A.level||""),
+    "Tools I use: "+(A.tools||[]).join(", "),"One thing to take off my plate: "+A.task.trim(),
+    "Preferred dates: "+A.dates.filter(Boolean).join(", ")+" ("+(A.tz||"")+")"];
+  if(A.note.trim())lines.push("Timing note: "+A.note.trim());
+  return "mailto:"+CONTACT_EMAIL+"?subject="+encodeURIComponent("Book a session: "+A.name.trim())+"&body="+encodeURIComponent(lines.join("\n"));
+}
+function showEmailRequest(){
+  const name=firstName(A.name),href=bookingMailto();
+  setStage("pay",95);showStep("mDone");
+  $id("mDoneH").firstChild.textContent="One last step";
+  const t=$id("mDoneTxt"),a=el("a","btn btn-sun","Send my booking request ");
+  a.href=href;a.append(arrow());a.style.display="inline-flex";a.style.marginTop="16px";
+  t.replaceChildren((name?"Thanks, "+name+". ":"Thanks. ")+"Online payment is being set up, so we'll book this by email. Tap below and your email app opens with your answers filled in. Just hit send. Marcos will reply to confirm your time and how to pay. Nothing was charged.",el("br"),a);
+  try{window.location.href=href}catch(e){}
+  setTimeout(()=>$id("mDoneH").focus(),30);
 }
 function showPaid(d){
   const name=firstName(d.name||A.name),email=d.email||A.email,hadDates=A.dates.some(Boolean);
