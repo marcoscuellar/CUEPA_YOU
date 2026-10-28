@@ -381,12 +381,12 @@ html{scroll-behavior:smooth}
 
 <!-- HERO -->
 <section class="hero">
-  <picture><img src="img/hero-backyard.webp" srcset="img/hero-backyard-1200.webp 1200w, img/hero-backyard.webp 1926w" sizes="100vw" width="1926" height="817" fetchpriority="high" decoding="async" alt="Friends laughing around a fire pit in a backyard at night, under string lights"></picture>
+  <picture><img src="img/hero-family-birthday.jpg" width="2048" height="1143" fetchpriority="high" decoding="async" alt="Illustrative family birthday gathering in a backyard, with a dad laughing beside his kids"></picture>
   <div class="shade"></div>
   <div class="wrap">
     <div class="hero-copy">
       <p class="eyebrow">AI coaching for real life</p>
-      <h1 class="anton">Make room for <br>more of you<span>.</span></h1>
+      <h1 class="anton">Making more<br>time for you<span>.</span></h1>
       <p class="lede">One-on-one AI help for everyday life. We cut through the noise with you, set AI up around your life, and build your own AI command center together.</p>
       <div class="ctas">
         <a class="btn btn-sun js-book" href="#book">Book a session <span aria-hidden="true">›</span></a>
@@ -931,6 +931,23 @@ main#top>.familiar{padding:0;background:transparent;box-shadow:none;border:0;bor
 .familiar .ai-overwhelm{order:0}
 .familiar .fam-top{order:1}
 @media(max-width:700px){.familiar>.wrap{grid-template-columns:1fr}}
+
+/* Family hero: white-led copy overlay, with dad and children clear on the right. */
+.hero{position:relative;display:block;min-height:760px;background:#fff;isolation:isolate}
+.hero picture{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;margin:0;border-radius:0;z-index:-2}
+.hero picture img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:72% center;filter:none}
+.hero .shade{display:block;position:absolute;inset:0;height:100%;z-index:-1;background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.98) 15%,rgba(255,255,255,.92) 28%,rgba(255,255,255,.7) 39%,rgba(255,255,255,0) 55%);pointer-events:none}
+.hero .wrap{display:block;position:relative;padding-block:88px;min-height:760px}
+.hero-copy{max-width:43%}
+.hero h1{font-size:clamp(46px,5.8vw,82px);line-height:1.02}
+.hero .lede{font-size:18px;line-height:1.6;max-width:460px}
+.hero .ctas{display:grid;justify-items:start;gap:12px}
+.hero .ctas .btn{padding:16px 24px}
+.hero .price-line{max-width:380px;font-size:14px}
+.hero .back{max-width:360px}
+.hero .day{display:none}
+@media(max-width:1100px){.hero,.hero .wrap{min-height:740px}.hero .wrap{padding-block:64px}.hero-copy{max-width:46%}.hero h1{font-size:clamp(44px,6vw,66px)}.hero .shade{background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.96) 25%,rgba(255,255,255,.82) 38%,transparent 60%)}}
+@media(max-width:700px){.hero{display:flex;min-height:0}.hero .wrap{order:0;min-height:0;padding-block:36px}.hero-copy{max-width:none}.hero h1{font-size:clamp(44px,10.5vw,68px)}.hero .lede{font-size:17px}.hero .ctas{display:flex}.hero .ctas .btn{width:100%}.hero picture{order:1;position:relative;inset:auto;height:auto;width:100%;z-index:0}.hero picture img{position:relative;inset:auto;height:auto;aspect-ratio:2048/1143;object-fit:contain;object-position:center}.hero .shade{display:none}}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
