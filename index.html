@@ -801,6 +801,48 @@ body{background:var(--paper);line-height:1.55}
 @media(max-width:1100px){.hero .wrap{grid-template-columns:1fr;gap:32px;padding-top:136px}.hero .day{max-width:620px}.hero-copy{max-width:800px}.hero .day-head{margin-bottom:12px}.hero .dcard{padding:14px}.hero .dcard p{font-size:13px}.start .txt{padding:40px 32px}.cd-main{border-bottom:1px solid var(--line)}.cd-side+.cd-brief{border-top:1px solid var(--line)}}
 @media(max-width:700px){.top .wrap{height:72px;gap:8px}.top .logo img{height:30px}.menu{gap:6px}.menu .btn-sm{padding:11px 12px;font-size:10px;min-height:44px}.dd-btn{padding:10px;font-size:10px}.hero .wrap{padding-top:116px;padding-bottom:32px;gap:26px}.hero h1{font-size:clamp(52px,12vw,80px)}.hero .lede{font-size:17px;max-width:none}.hero .ctas{margin-block:24px}.hero .day{max-width:none;padding:18px}.hero picture{width:calc(100% - 32px);margin-bottom:16px;border-radius:18px}.hero picture img{aspect-ratio:1926/817;object-position:center}.sec,.faq{padding-block:64px}.feats .wrap{padding-block:32px}.feat{padding-inline:8px}.feat h3{font-size:18px}.feat p{font-size:14px}.meet{padding-block:64px}.start{padding-bottom:64px}.start .txt{padding:36px 24px}.start .day{padding:18px}.cd-top{padding:16px}.cd-side,.cd-main{padding:18px 16px}.cd-ev{padding:9px}.cd-tag{padding:3px 6px}.cd-hi b{font-size:13px}.cd-sample{font-size:9px}.cd-top{gap:9px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* Reference-led panel composition: white first, generous gutters, tactile cards. */
+body{background:#fff}
+main#top{display:flex;flex-direction:column;gap:24px;padding:104px clamp(12px,3vw,40px) 40px;max-width:1600px;margin:auto}
+main#top>section{border-radius:40px;overflow:hidden}
+.wrap{max-width:1280px;padding-inline:clamp(24px,5vw,72px)}
+.hero{background:#fff;border:1px solid var(--line);box-shadow:0 1px 2px rgba(20,20,20,.03),0 12px 30px rgba(20,20,20,.05)}
+.hero .wrap{padding-top:80px;padding-bottom:64px;grid-template-columns:minmax(0,1.25fr) minmax(300px,.85fr);gap:clamp(32px,5vw,72px)}
+.hero h1{font-size:clamp(56px,6.2vw,88px);line-height:1.02;letter-spacing:-.025em}
+.hero .lede{font-size:20px;line-height:1.6}
+.hero .day{padding:28px;background:var(--ink);color:#fff;border-color:var(--ink);border-radius:24px;box-shadow:0 24px 48px -28px rgba(20,20,20,.35)}
+.hero .day-head .dh{font-size:26px;letter-spacing:-.02em}
+.hero .day-head p{color:rgba(255,255,255,.72)}
+.hero .dcard{background:#242424;border-color:#363636;color:#fff;padding:18px 14px}
+.hero .dcard p{color:rgba(255,255,255,.68)}
+.hero .dcard .ic:not(.sun){background:#353535;color:var(--sun)}
+.hero .dcard .go.sun{color:var(--ink)}
+.hero picture{width:calc(100% - 64px);margin-bottom:32px;border-radius:24px}
+.eyebrow{font-size:12px;letter-spacing:.18em}
+.sec,.faq{padding-block:88px;background:#fff;border:1px solid var(--line);box-shadow:0 1px 2px rgba(20,20,20,.03),0 12px 30px rgba(20,20,20,.04)}
+.changes,.faq{background:var(--soft)}
+.feats{background:var(--soft);border:0}
+.feats .wrap{padding-block:40px}
+.meet{padding-block:88px}
+.meet h2{font-size:clamp(52px,6vw,82px)}
+.meet-3>div{border-top-color:rgba(249,201,51,.5)}
+.sec-head{max-width:800px}
+.sec-head h2{font-size:clamp(42px,4.5vw,64px);letter-spacing:-.015em}
+.c4,.deal>div,.thought{border-radius:18px;box-shadow:0 1px 2px rgba(20,20,20,.04),0 12px 30px rgba(20,20,20,.045)}
+.c4 .ic,.dcard .ic{border-radius:14px}
+.c4:hover,.thought:hover{box-shadow:0 20px 40px -24px rgba(20,20,20,.22)!important}
+.familiar .ph,.moment{border-radius:24px}
+.cd{border-radius:24px;box-shadow:0 20px 48px -30px rgba(20,20,20,.2)}
+.start{padding:0}
+.start>.wrap{padding:0;max-width:none}
+.start .box{border-radius:40px;background:#fff;box-shadow:0 1px 2px rgba(20,20,20,.04),0 12px 30px rgba(20,20,20,.05)}
+.start .txt{padding:clamp(36px,5vw,72px)}
+.start .ph{margin:24px;border-radius:24px;overflow:hidden}
+.faq .wrap{gap:64px}
+.foot{border:0}
+@media(max-width:1100px){.hero .wrap{grid-template-columns:1fr;padding-top:56px}.hero .day{max-width:none}.hero .dcard{padding:16px}.start .ph{margin:20px}}
+@media(max-width:700px){main#top{padding-top:88px;gap:16px;padding-bottom:24px}main#top>section,.start .box{border-radius:24px}.hero .wrap{padding-top:36px;padding-bottom:32px;gap:28px}.hero h1{font-size:clamp(48px,11vw,72px)}.hero .lede{font-size:17px}.hero .day{padding:22px}.hero picture{width:calc(100% - 32px);margin-bottom:16px;border-radius:16px}.sec,.faq,.meet{padding-block:56px}.feats .wrap{padding-block:32px}.start{padding:0}.start .txt{padding:32px 24px}.start .ph{margin:16px}.faq .wrap{gap:32px}.top .wrap{padding-inline:16px}}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
