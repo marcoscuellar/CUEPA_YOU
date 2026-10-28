@@ -434,6 +434,13 @@ html{scroll-behavior:smooth}
       </div>
     </div>
     </div>
+    <aside class="ai-overwhelm" aria-labelledby="ai-overwhelm-label">
+      <p class="eyebrow" id="ai-overwhelm-label">You're not alone</p>
+      <p class="ai-overwhelm-number">61<span>%</span></p>
+      <p class="ai-overwhelm-copy">of full-time UK workers surveyed feel overwhelmed by the pace of AI development.</p>
+      <p class="ai-overwhelm-source">Henley Business School · 2026<br>Survey of 2,900 full-time UK workers.</p>
+      <a class="ai-overwhelm-link" href="https://www.henley.ac.uk/ai-pulse-check" target="_blank" rel="noopener noreferrer">Read the research <span aria-hidden="true">↗</span></a>
+    </aside>
   </div>
 </section>
 
@@ -880,6 +887,29 @@ main#top>section{border:0;border-radius:40px}
 .meet :focus-visible{outline-color:var(--sun)}
 @media(max-width:700px){main#top>section,.start .box{border-radius:28px}.hero .wrap{padding-block:48px}.hero h1{font-size:clamp(46px,10.5vw,72px)}.menu .btn-sm{font-size:12px;letter-spacing:0}.top .logo img{height:28px}.dd-btn{font-size:10px}.sec,.faq,.meet{padding-block:64px}.start{padding:0}.c4 h3,.step h3{font-size:24px}}
 @media(prefers-reduced-motion:reduce){.c4:hover,.thought:hover,.dcard:hover,.btn:hover{translate:none}}
+
+/* Sound familiar: two-thirds context and phone, one-third sourced statistic. */
+.familiar>.wrap{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:24px;align-items:stretch}
+.familiar .fam-top{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:28px;align-items:center;min-width:0;padding:24px}
+.familiar .sec-head h2{font-size:clamp(34px,3.2vw,46px)}
+.familiar .sec-head p:not(.eyebrow){font-size:17px;line-height:1.6}
+.familiar .phone{width:230px;margin:0;max-width:100%}
+.familiar .ph-screen{padding:12px 8px}
+.familiar .ph-time{margin:10px 0 12px}
+.familiar .ph-time b{font-size:48px}
+.familiar .ph-stack{gap:6px}
+.familiar .nt{font-size:10px;padding:8px;gap:7px}
+.familiar .nt-h b{font-size:10px}.familiar .nt-h i{font-size:9px}
+.familiar .nt-ic{width:22px;height:22px}
+.ai-overwhelm{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-width:0;padding:36px 28px;border-radius:18px;background:#fff;box-shadow:var(--studio-shadow)}
+.ai-overwhelm .eyebrow{color:var(--sun-text)}
+.ai-overwhelm-number{font:800 clamp(72px,7vw,104px)/1 Archivo,Inter,Arial,sans-serif;letter-spacing:-.06em;margin:30px 0 24px;color:#000}
+.ai-overwhelm-number span{color:var(--sun-text)}
+.ai-overwhelm-copy{font:500 19px/1.5 Inter,Arial,sans-serif}
+.ai-overwhelm-source{margin-top:28px;font-size:13px;line-height:1.6;color:var(--muted)}
+.ai-overwhelm-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:12px;font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:1100px){.familiar .fam-top{grid-template-columns:1fr;padding:8px 20px;gap:28px}.familiar .phone{width:260px;justify-self:center}.familiar .nt{font-size:11px}.familiar .nt-h b{font-size:11px}}
+@media(max-width:700px){.familiar>.wrap{grid-template-columns:1fr;gap:32px}.familiar .fam-top{padding:0}.familiar .phone{width:270px}.ai-overwhelm{padding:32px 24px}.ai-overwhelm-number{font-size:88px;margin-block:24px}.ai-overwhelm-copy{font-size:19px}.familiar .sec-head h2{font-size:clamp(34px,8vw,46px)}}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
