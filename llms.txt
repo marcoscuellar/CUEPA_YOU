@@ -1,25 +1,32 @@
 # CUEPA for You
 
-> One-on-one AI help for individuals. A one-hour session with Marcos and the
-> CUEPA team, working on your real tasks with AI, in plain language.
+> One-on-one AI help for everyday life. A one-hour video session with Marcos
+> Cuellar and the CUEPA team for people who feel behind on AI. We set AI up
+> around your life and build your own AI command center together.
 > CUEPA for You is part of ELIPAN GROUP.
 
 ## What we do
 - One-hour, one-on-one AI sessions for individuals, held over video call
-- We work on your real stuff: your week, your inbox, your money, or an idea you keep putting off
-- No tech background needed; we start wherever you are
-- After the session: a one-page recap with what we covered and the prompts we built
+- We get to know how your life runs, cut through the AI noise, and decide together what's worth learning, what AI should take off your plate, and what stays yours
+- We set it up, connected and working, during the session
+- No tech skills needed; beginners welcome
+
+## What you leave with
+Your CUEPA AI command center, a personal dashboard with:
+- Your calendar
+- The prompts and goals we write together during the session
+- A weekly AI briefing from Marcos: what changed, what's worth trying, what's safe to skip
 
 ## Where
 Virtual, over video call. Available anywhere.
 
 ## Who you work with
 Marcos Cuellar and the CUEPA team. Marcos has been learning and studying AI
-since it came out.
+since it came out, and builds AI systems for businesses through CUEPA for Work.
 
 ## Who it's for
-Individuals, not businesses. Parents, professionals, freelancers, creators,
-learners, and anyone who feels behind on AI.
+Individuals, not businesses: people with busy weeks, full inboxes and
+families who feel behind or overwhelmed by AI.
 For business and team work, see CUEPA for Work: https://www.makingcuepa.com/
 
 ## How booking works
@@ -27,10 +34,10 @@ For business and team work, see CUEPA for Work: https://www.makingcuepa.com/
 2. Review your answers and pick two or three preferred dates
 3. Pay $129 securely through Stripe to confirm your purchase
 4. Marcos emails you to confirm your session time
-5. Meet for one hour over video and leave with your personalized dashboard
+5. Meet for one hour over video and leave with your AI command center
 
 ## Pricing
-$129 for one hour of personal AI coaching over video, including a personalized dashboard with the prompts and goals developed together. Payment confirms the purchase.
+$129 for one hour of one-on-one AI help over video, including your AI command center.
 
 ## Contact
 Email: marcoscuellar@elipangroup.com
