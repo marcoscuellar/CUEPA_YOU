@@ -406,22 +406,12 @@ html{scroll-behavior:smooth}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}[data-reveal]{opacity:1;transform:none}}
 
-/* Rooftop hero (Oct 30): photo starts at 30% so copy sits on dark ground, never on faces */
+/* Rooftop hero (Oct 30): full-bleed photo, headline overlaid on a dark left fade (Marcos approved overlay) */
 @media (min-width:701px){
-  .hero picture{left:30%!important}
-  .hero picture img{object-position:62% 50%!important}
-  .hero picture::before{content:"";position:absolute;inset:0 auto 0 0;width:22%;z-index:1;background:linear-gradient(90deg,#141414,rgba(20,20,20,0))}
-  .hero .shade{background:linear-gradient(90deg,#141414 0%,#141414 30%,rgba(14,14,14,0) 40%),linear-gradient(0deg,rgba(14,14,14,.55),transparent 30%),linear-gradient(180deg,rgba(14,14,14,.45),transparent 22%)!important}
-  .hero-copy{max-width:min(620px,30vw)!important}
-  .hero .lede{max-width:min(520px,28vw)!important}
-  .hero h1{font-size:clamp(46px,5vw,96px)!important}
-}
-@media (min-width:701px) and (max-width:1100px){
-  .hero picture{left:0!important;top:0;bottom:auto;height:58%}
-  .hero picture::before{inset:auto 0 0 0;width:auto;height:40%;background:linear-gradient(0deg,#141414,rgba(20,20,20,0))}
-  .hero .shade{display:none!important}
-  .hero .wrap{padding-top:58vh!important}
-  .hero-copy,.hero .lede{max-width:640px!important}
+  .hero picture img{object-position:60% 50%!important}
+  .hero .shade{background:linear-gradient(90deg,rgba(14,14,14,.94) 0%,rgba(14,14,14,.8) 28%,rgba(14,14,14,.35) 48%,rgba(14,14,14,0) 62%),linear-gradient(0deg,rgba(14,14,14,.6),transparent 32%),linear-gradient(180deg,rgba(14,14,14,.45),transparent 22%)!important}
+  .hero-copy{max-width:min(640px,44vw)!important}
+  .hero .lede{max-width:min(520px,38vw)!important}
 }
 @media (max-width:700px){
   .hero picture img{aspect-ratio:4/5!important;object-position:76% 50%!important}
