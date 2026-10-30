@@ -405,6 +405,27 @@ html{scroll-behavior:smooth}
   .start .txt{padding:40px 24px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}[data-reveal]{opacity:1;transform:none}}
+
+/* Rooftop hero (Oct 30): photo starts at 30% so copy sits on dark ground, never on faces */
+@media (min-width:701px){
+  .hero picture{left:30%!important}
+  .hero picture img{object-position:62% 50%!important}
+  .hero picture::before{content:"";position:absolute;inset:0 auto 0 0;width:22%;z-index:1;background:linear-gradient(90deg,#141414,rgba(20,20,20,0))}
+  .hero .shade{background:linear-gradient(90deg,#141414 0%,#141414 30%,rgba(14,14,14,0) 40%),linear-gradient(0deg,rgba(14,14,14,.55),transparent 30%),linear-gradient(180deg,rgba(14,14,14,.45),transparent 22%)!important}
+  .hero-copy{max-width:min(620px,30vw)!important}
+  .hero .lede{max-width:min(520px,28vw)!important}
+  .hero h1{font-size:clamp(46px,5vw,96px)!important}
+}
+@media (min-width:701px) and (max-width:1100px){
+  .hero picture{left:0!important;top:0;bottom:auto;height:58%}
+  .hero picture::before{inset:auto 0 0 0;width:auto;height:40%;background:linear-gradient(0deg,#141414,rgba(20,20,20,0))}
+  .hero .shade{display:none!important}
+  .hero .wrap{padding-top:58vh!important}
+  .hero-copy,.hero .lede{max-width:640px!important}
+}
+@media (max-width:700px){
+  .hero picture img{aspect-ratio:4/5!important;object-position:76% 50%!important}
+}
 </style></head><body>
 
 <header class="top nav-w">
@@ -433,13 +454,13 @@ html{scroll-behavior:smooth}
 
 <!-- HERO -->
 <section class="hero">
-  <picture><img src="img/hero-laptop-dark.webp" width="1927" height="816" fetchpriority="high" decoding="async" alt="A smiling man at a sunny wooden table, talking on a video call on his laptop"></picture>
+  <picture><source srcset="img/hero-rooftop.webp" type="image/webp"><img src="img/hero-rooftop.jpg" width="2400" height="1610" fetchpriority="high" decoding="async" alt="Friends on a city rooftop at night cheering as a birthday cake with lit candles is brought to a smiling man"></picture>
   <div class="shade"></div>
   <div class="wrap">
     <div class="hero-copy">
       <aside class="note" aria-label="Example: what CUEPA handles for you">
-      <div class="note-top"><span class="av" aria-hidden="true"></span><b>CUEPA</b><i>6:15 PM</i><em>Done</em></div>
-      <p>You&rsquo;re clear for the night. Have fun at father-daughter date night.</p>
+      <div class="note-top"><span class="av" aria-hidden="true"></span><b>CUEPA</b><i>8:42 PM</i><em>Done</em></div>
+      <p>We took care of your calendar for tomorrow. Enjoy your time with your friends.</p>
     </aside>
       <p class="eyebrow hero-eyebrow">CUEPA for You · by ELIPAN GROUP</p>
       <h1 class="anton" aria-label="Make room for more of you."><span class="ln">Make room for</span><span class="ln ln-accent">more of you.</span></h1>
